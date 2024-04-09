@@ -27,7 +27,7 @@ class UserModel:
     def dictionaries_to_user(dictionary_list):
         users = []
         for item in dictionary_list:
-            users = UserModel.dictionary_to_payment(item)
-            users.append(users)
+            user = UserModel.dictionary_to_user(item)
+            users.append(user)
 
         return users
