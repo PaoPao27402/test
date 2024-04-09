@@ -14,7 +14,7 @@
 #         with self.connection.cursor(dictionary=True) as cursor:
 #             cursor.execute(sql, params)
 #             table = cursor.fetchall()
-#             return table
+#         return table
         
 #     def get_table_v1(self, sql, params=None):
 #         cursor = self.connection.cursor()
@@ -27,28 +27,28 @@
 #         with self.connection.cursor() as cursor:
 #             cursor.execute(sql, params)
 #             scalar = cursor.fetchone()
-#             return scalar
+#         return scalar
         
 #     def insert(self, sql, params=None):
 #         with self.connection.cursor() as cursor:
 #             cursor.execute(sql, params)
 #             self.connection.commit() # Save to database now.
 #             last_row_id = cursor.lastrowid
-#             return last_row_id 
+#         return last_row_id 
 
 #     def update(self, sql, params=None):
 #         with self.connection.cursor() as cursor:
 #             cursor.execute(sql, params)
 #             self.connection.commit() # Save to database now.
 #             row_count = cursor.rowcount
-#             return row_count
+#         return row_count
        
 #     def delete(self, sql, params=None):
 #         with self.connection.cursor() as cursor:
 #             cursor.execute(sql, params)
 #             self.connection.commit() # Save to database now.
 #             row_count = cursor.rowcount
-#             return row_count
+#         return row_count
     
 #     def close(self):
 #         self.connection.close()
