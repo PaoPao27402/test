@@ -24,7 +24,7 @@ class UserModel:
         return user
     
     @staticmethod
-    def dictionaries_to_user(dictionary_list):
+    def dictionaries_to_users(dictionary_list):
         users = []
         for item in dictionary_list:
             user = UserModel.dictionary_to_user(item)

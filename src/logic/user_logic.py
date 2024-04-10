@@ -8,7 +8,7 @@ class UserLogic:
     def get_all_users(self):
         sql = "SELECT * FROM travel_agency.users_tbl"
         result = self.dal.get_table(sql)
-        results = UserModel.dictionaries_to_user(result) # convert dict to object
+        results = UserModel.dictionaries_to_users(result) # convert dict to object
         
         return results
     
