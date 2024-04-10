@@ -31,7 +31,7 @@ class VacationModel:
         return vacation
     
     @staticmethod
-    def dictionaries_to_vacation(list_of_dictionary):
+    def dictionaries_to_vacations(list_of_dictionary):
         vacations = []
         for item in list_of_dictionary:
             vacation = VacationModel.dictionary_to_vacation(item)
