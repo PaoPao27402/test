@@ -5,6 +5,14 @@ class UserLogic:
     def __init__(self):
         self.dal = DAL()
 
+    def insert_user(self):
+        sql = "INSERT INTO travel_agency.users_tbl (first_name, last_name, email, password, role_ID) VALUES (%s, %s, %s, %s, %s)"
+        params = ('first_name', 'last_name', 'email', 'password', 'role_ID')
+        result = self.dal.insert(sql, params)
+        results = UserModel.dictionaries_to_users(result)  # convert dict to object
+
+        return results
+
     def get_all_users(self):
         sql = "SELECT * FROM travel_agency.users_tbl"
         result = self.dal.get_table(sql)
