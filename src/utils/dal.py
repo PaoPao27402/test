@@ -9,6 +9,7 @@ class DAL:
             password="P@22word2710",
             database="travel_agency"
         )
+        print(f'DB connected: {self.connection.is_connected()}')
 
     def get_table(self, sql, params=None):
         with self.connection.cursor(dictionary=True) as cursor:
