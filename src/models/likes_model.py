@@ -7,3 +7,20 @@ class LikeModel:
         def display(self):
                 print(f"User: {self.user_ID} Liked: {self.vacations_ID}")
 
+        @staticmethod
+        def dictionary_to_like(dictionary):
+            vacations_ID = dictionary["vacations_ID"]
+            user_ID = dictionary["user_ID"]
+            like = LikeModel(vacations_ID, user_ID)
+            return like
+        
+        @staticmethod
+        def dictionaries_to_likes(list_of_likes_dict):
+            likes = []
+            for item in list_of_likes_dict:
+                like = LikeModel.dictionary_to_like(item)
+                likes.append(like)
+            return likes
+    
+
+

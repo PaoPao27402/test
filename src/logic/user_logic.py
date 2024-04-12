@@ -38,12 +38,9 @@ class UserLogic:
     def get_one_user(self):
         sql = "SELECT * FROM travel_agency.users_tbl limit 1"
         result = self.dal.get_table(sql)
-        results = UserModel.dictionary_to_user(result) # convert dict to object
+        results = UserModel.dictionary_to_user(result)
         
         return results
     
     def close(self):
         self.dal.close()
-
-user = UserLogic()
-user.insert_user("yoel","mizrahi","yoel@intel.com","12345",2)
