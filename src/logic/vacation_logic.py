@@ -38,7 +38,7 @@ class VacationLogic:
                 self.dal.update(sql, params)
                 return "Vacation updated successfully 🎉"
             else:
-                return "Invalid input: End date cannot be earlier than start date"
+                return "Invalid input: End date cannot be earlier 📆 than start date"
         else:
             return "Invalid input for vacation 😑"
 
@@ -46,7 +46,9 @@ class VacationLogic:
         try:
             date = datetime.strptime(date_str, '%Y-%m-%d')
             return date >= datetime.now()
+        
         except ValueError:
+
             return False
 
     def close(self):
