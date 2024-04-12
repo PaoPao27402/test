@@ -16,6 +16,8 @@ class LikesLogic:
         params = (user_ID, vacations_ID)
         result = self.dal.delete(sql, params)
         return result
+    
+    
 
     def close(self):
         self.dal.close()
