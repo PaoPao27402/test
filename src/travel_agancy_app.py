@@ -30,18 +30,12 @@ class Test:
 
     def test_users_facade(self):
         print("Testing Users Facade...")
-    # Using with statement to ensure proper cleanup
+  
         with self.users_facade as facade:
         # Test get_random_user
             random_user = facade.get_random_user()
             print("Random User Details:")
             random_user.display()
-
-            # result = facade.add_user(first_name="Juan", last_name="De la Cruz", email="juandela@example.com", password="p2545ssword", role_ID=2)
-            # print("Add User Result:", result)
-
-            # result = facade.register(email="test@example.com", password="password")
-            # print("Register Result:", result)
 
     # def test_likes_facade(self):
     #     print("Testing Likes Facade...")
