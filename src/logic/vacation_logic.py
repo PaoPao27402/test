@@ -28,7 +28,7 @@ class VacationLogic:
     def update_vacation(self, vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price):
         if self.is_valid_date(start_vacation_date) and self.is_valid_date(end_vacation_date) and 0 <= price <= 10000:
             if start_vacation_date <= end_vacation_date:
-                sql = "UPDATE travel_agency.vacations_tbl SET country_ID = %s, vacation_description=%s, start_vacation_date = %s, end_vacation_date = %s, price = %s WHERE vacation_ID = %s"
+                sql = "UPDATE travel_agency.vacations_tbl SET country_ID = %s, vacation_description = %s, start_vacation_date = %s, end_vacation_date = %s, price = %s WHERE vacation_ID = %s"
                 params = (vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price)
                 self.dal.update(sql, params)
                 return "Vacation updated successfully 🎉"
