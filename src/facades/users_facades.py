@@ -1,4 +1,3 @@
-import random
 from logic.user_logic import UserLogic
 from models.user_model import UserModel
 
@@ -7,7 +6,7 @@ class UsersFacade:
     def __init__(self):
         self.logic = UserLogic()
 
-    def register_user(self, email, password, first_name, last_name,user_ID,role_ID):
+    def register_user(self, email, password, first_name, last_name, user_ID, role_ID):
 
         if not self.logic.is_valid_email(email):
             return "Invalid email format 😑"
@@ -28,32 +27,22 @@ class UsersFacade:
             return "Must enter a Last Name"
         
         # Add user to the system
-        user = UserModel(email=email, password=password, first_name=first_name, last_name=last_name, user_ID=user_ID, role_ID=role_ID)
-        self.logic.insert_user(user)
-        return "User registered successfully 🤓👌"
-        
-    def sign_in(self, email, password):
-        # Validate email and password
-        if not self.logic.is_valid_email(email):
-            return "Invalid email format 😑"
-        if len(password) < 4:
-            return "Password must be at least 4 characters long"
-
-        # Check if user exists
-        user = self.logic.get_user_by_mail_id(email)
-        if user:
-            if user.password == password:
-                return "Sign-in successful ✅"
-            else:
-                return "Incorrect password"
+        result = self.logic.insert_user(first_name, last_name, email, password, user_ID, role_ID)
+        if result:
+            return "User registered successfully 🤓👌"
         else:
-            return "User does not exist"
+            return "Failed to register user"
+
 
     def close(self):
         self.logic.close()
 
     def __enter__(self):
         return self
+        
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.close()
+
         
     def __exit__(self, exc_type, exc_value, traceback):
         self.close()

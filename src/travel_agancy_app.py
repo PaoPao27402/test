@@ -25,7 +25,7 @@ class Test:
             print("All Vacations:", all_vacations)
 
             # Test add_vacation (assuming parameters are provided)
-            result = facade.add_vacation(vacations_ID=5, country_ID=8, vacation_description="Amazing view", start_vacation_date="2028-05-14", end_vacation_date="2028-06-18", price=500)
+            result = facade.add_vacation(vacations_ID=15, country_ID=8, vacation_description="Amazing view", start_vacation_date="2028-05-14", end_vacation_date="2028-06-18", price=500, vacation_pic_filename = "vac_pic_11")
             print("Add Vacation Result:", result)
 
     def test_users_facade(self):
