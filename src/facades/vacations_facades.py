@@ -9,8 +9,8 @@ class VacationFacade:
     def get_all_vacations(self):
         return self.logic.get_all_vacations()
 
-    def add_vacation(self, country_ID, start_vacation_date, end_vacation_date, price):
-        return self.logic.add_vacation(country_ID, start_vacation_date, end_vacation_date, price)
+    def add_vacation(self, vacations_ID, country_ID, start_vacation_date, end_vacation_date, price):
+        return self.logic.add_vacation(vacations_ID, country_ID, start_vacation_date, end_vacation_date, price)
     
     def update_vacation(self, vacations_ID, country_ID, start_vacation_date, end_vacation_date, price):
         return self.logic.update_vacation(vacations_ID, country_ID, start_vacation_date, end_vacation_date, price)

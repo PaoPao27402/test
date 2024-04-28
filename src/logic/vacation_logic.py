@@ -12,15 +12,16 @@ class VacationLogic:
         results = VacationModel.dictionaries_to_vacations(result)
         return results
 
-    def add_vacation(self, country_ID, start_vacation_date, end_vacation_date, price):
+    def add_vacation(self,vacations_ID, country_ID, start_vacation_date, end_vacation_date, price):
         if self.is_valid_date(start_vacation_date) and self.is_valid_date(end_vacation_date) and 0 <= price <= 10000:
+
             if start_vacation_date <= end_vacation_date:
-                sql = "INSERT INTO travel_agency.vacations_tbl (country_ID, start_vacation_date, end_vacation_date, price) VALUES (%s, %s, %s, %s)"
-                params = (country_ID, start_vacation_date, end_vacation_date, price)
+                sql = "INSERT INTO travel_agency.vacations_tbl (vacations_ID, country_ID, start_vacation_date, end_vacation_date, price) VALUES (%s, %s, %s, %s, %s)"
+                params = (vacations_ID, country_ID, start_vacation_date, end_vacation_date, price)
                 self.dal.insert(sql, params)
                 return "Vacation added successfully 🎊"
             else:
-                return "Invalid input: End date cannot be earlier than start date"
+                return "Invalid input: End date cannot be earlier than start date 📆"
         else:
             return "Invalid input for vacation 😑"
 
