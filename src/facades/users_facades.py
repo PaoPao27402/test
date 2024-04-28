@@ -28,11 +28,18 @@ class UsersFacade:
         
         # Add user to the system
         user = UserModel(email=email, password=password, first_name=first_name, last_name=last_name)
-        self.logic.insert_user(user)
+        self.logic.add_user(user)
         return "User registered successfully 🤓👌"
         
     def sign_in(self, email, password):
-        user = self.logic.get_user_by_mail_id(email)
+        # Validate email and password
+        if not self.logic.is_valid_email(email):
+            return "Invalid email format 😑"
+        if len(password) < 4:
+            return "Password must be at least 4 characters long"
+
+        # Check if user exists
+        user = self.logic.get_user_by_email(email)
         if user:
             if user.password == password:
                 return "Sign-in successful"
@@ -49,5 +56,6 @@ class UsersFacade:
         
     def __exit__(self, exc_type, exc_value, traceback):
         self.close()
+
 
 
