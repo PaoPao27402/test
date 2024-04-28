@@ -10,14 +10,14 @@ class VacationModel:
         self.price = vacation_pic_filename
 
     def display(self):
-        print(f"Vacation ID: {self.vacations_ID} 
-              Country ID: {self.country_ID} 
-              Vacation description: {self.vacation_description} 
-              Start date: {self.start_vacation_date} 
-              End date{self.end_vacation_date} 
-              the Price is: {self.price} 
-              and the Vacation file is: {self.vacation_pic_filename}")
-        
+        print(f"Vacation ID: {self.vacations_ID}\n"
+              f"Country ID: {self.country_ID}\n"
+              f"Vacation description: {self.vacation_description}\n"
+              f"Start date: {self.start_vacation_date}\n"
+              f"End date: {self.end_vacation_date}\n"
+              f"The Price is: {self.price}\n"
+              f"and the Vacation file is: {self.vacation_pic_filename}")
+
     @staticmethod
     def dictionary_to_vacation(dictionary):
         vacations_ID = dictionary["vacations_ID"]
@@ -29,7 +29,7 @@ class VacationModel:
         vacation_pic_filename = dictionary["vacation_pic_filename"]
         vacation = VacationModel(vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename)
         return vacation
-    
+
     @staticmethod
     def dictionaries_to_vacations(list_of_dictionary):
         vacations = []
@@ -38,3 +38,4 @@ class VacationModel:
             vacations.append(vacation)
 
         return vacations
+
