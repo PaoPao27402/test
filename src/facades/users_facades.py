@@ -7,7 +7,7 @@ class UsersFacade:
     def __init__(self):
         self.logic = UserLogic()
 
-    def register_user(self, email, password, first_name, last_name):
+    def register_user(self, email, password, first_name, last_name,user_ID,role_ID):
 
         if not self.logic.is_valid_email(email):
             return "Invalid email format 😑"
@@ -28,7 +28,7 @@ class UsersFacade:
             return "Must enter a Last Name"
         
         # Add user to the system
-        user = UserModel(email=email, password=password, first_name=first_name, last_name=last_name)
+        user = UserModel(email=email, password=password, first_name=first_name, last_name=last_name, user_ID=user_ID, role_ID=role_ID)
         self.logic.insert_user(user)
         return "User registered successfully 🤓👌"
         

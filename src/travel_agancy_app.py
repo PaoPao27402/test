@@ -28,16 +28,29 @@ class Test:
             result = facade.add_vacation(country_ID="8", start_vacation_date="14/05/2028", end_vacation_date="18/06/2028", price= 500)
             print("Add Vacation Result:", result)
 
-    def test_users_facade(self):
-        print("Testing Users Facade...")
-  
-        with self.users_facades as facade:
-        # Test get_random_user
-            random_user = facade.get_random_user()
-            print("Random User Details:")
-            print("First Name:", random_user.first_name)
-            print("Last Name:", random_user.last_name)
-            print("Email:", random_user.email)
+def test_users_facade(self):
+    print("Testing Users Facade...")
+
+    # Hard-coded user registration
+    registration_result = self.users_facades.register_user(
+        email="davidjhonny@example.com",
+        password="p$ssword123",
+        first_name="Johnny",
+        last_name="David",
+        user_ID="UI00",  # Provide a valid user ID
+        role_ID="2"      # Provide a valid role ID
+    )
+    print("Registration Result:", registration_result)
+
+    # Hard-coded user sign-in
+    sign_in_result = self.users_facades.sign_in(
+        email="test@example.com",
+        password="password123"
+    )
+    print("Sign-in Result:", sign_in_result)
+
+    def test_all(self):
+        self.test_users_facade()
 
     def test_likes_facade(self):
         print("Testing Likes Facade...")
@@ -59,6 +72,8 @@ class Test:
 with Test() as test_instance:
     test_instance.test_all()
 
+test_instance = Test()
+test_instance.test_all()
 
 
 
