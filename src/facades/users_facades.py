@@ -1,12 +1,12 @@
-from logic.user_logic import UserLogic
-from models.user_model import UserModel
+from logic.user_logic import *
+from models.user_model import *
 
 class UsersFacade:
     
     def __init__(self):
         self.logic = UserLogic()
 
-    def register_user(self, email, password, first_name, last_name, user_ID, role_ID):
+    def register_user(self, user_ID, first_name, last_name, email, password, role_ID):
 
         if not self.logic.is_valid_email(email):
             return "Invalid email format 😑"
@@ -27,12 +27,11 @@ class UsersFacade:
             return "Must enter a Last Name"
         
         # Add user to the system
-        result = self.logic.insert_user(first_name, last_name, email, password, user_ID, role_ID)
+        result = self.logic.insert_user(user_ID, first_name, last_name, email, password, role_ID)
         if result:
             return "User registered successfully 🤓👌"
         else:
-            return "Failed to register user"
-
+            return "Failed to register user 🫤"
 
     def close(self):
         self.logic.close()
@@ -42,10 +41,4 @@ class UsersFacade:
         
     def __exit__(self, exc_type, exc_value, traceback):
         self.close()
-
-        
-    def __exit__(self, exc_type, exc_value, traceback):
-        self.close()
-
-
 

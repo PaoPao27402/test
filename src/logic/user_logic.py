@@ -5,9 +5,9 @@ class UserLogic:
     def __init__(self):
         self.dal = DAL()
 
-    def insert_user(self, first_name: str, last_name: str, email: str, password: str, user_ID: str) -> bool:
-        sql = "INSERT INTO travel_agency.users_tbl (first_name, last_name, email, password, user_ID) VALUES (%s, %s, %s, %s, %s)"
-        params = (first_name, last_name, email, password, user_ID)
+    def insert_user(self,user_ID: str, first_name: str, last_name: str, email: str, password: str, role_ID: str) -> bool:
+        sql = "INSERT INTO travel_agency.users_tbl (user_ID, first_name, last_name, email, password, role_ID) VALUES (%s, %s, %s, %s, %s, %s)"
+        params = (user_ID, first_name, last_name, email, password, role_ID)
         result = self.dal.insert(sql, params)
         return result
 
