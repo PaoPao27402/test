@@ -28,7 +28,7 @@ class UsersFacade:
         
         # Add user to the system
         user = UserModel(email=email, password=password, first_name=first_name, last_name=last_name)
-        self.logic.add_user(user)
+        self.logic.insert_user(user)
         return "User registered successfully 🤓👌"
         
     def sign_in(self, email, password):
@@ -39,10 +39,10 @@ class UsersFacade:
             return "Password must be at least 4 characters long"
 
         # Check if user exists
-        user = self.logic.get_user_by_email(email)
+        user = self.logic.get_user_by_mail_id(email)
         if user:
             if user.password == password:
-                return "Sign-in successful"
+                return "Sign-in successful ✅"
             else:
                 return "Incorrect password"
         else:

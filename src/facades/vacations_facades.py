@@ -1,4 +1,3 @@
-import random
 from logic.vacation_logic import *
 from models.vacation_model import *
 
@@ -7,13 +6,18 @@ class VacationFacade:
     def __init__(self):
         self.logic = VacationLogic()
 
-    def get_random_vacations(self):
-        all_vacations = self.logic.get_all_vacations()
-        index = random.randint(0, len(all_vacations) - 1)
-        random_vacations = all_vacations[index]
+    def get_all_vacations(self):
+        return self.logic.get_all_vacations()
 
-        return random_vacations
+    def add_vacation(self, country_ID, start_vacation_date, end_vacation_date, price):
+        return self.logic.add_vacation(country_ID, start_vacation_date, end_vacation_date, price)
     
+    def update_vacation(self, vacations_ID, country_ID, start_vacation_date, end_vacation_date, price):
+        return self.logic.update_vacation(vacations_ID, country_ID, start_vacation_date, end_vacation_date, price)
+
+    def delete_vacation(self, vacations_ID):
+        return self.logic.delete_vacation(vacations_ID)
+
     def close(self):
         self.logic.close()
 
