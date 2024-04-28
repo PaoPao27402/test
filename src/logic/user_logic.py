@@ -92,14 +92,7 @@ class UserLogic:
             return False
         
         return True
-    
-    # Check if password length is at least 4 characters
-    def is_valid_password(self, password):
-                
-        if len(password) < 4:
-            return False
-        else:
-            return True
+
         
     def close(self):
         self.dal.close()

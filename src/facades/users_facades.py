@@ -1,19 +1,46 @@
-import random
-from logic.user_logic import *
-from models.user_model import *
+from logic.user_logic import UserLogic
+from models.user_model import UserModel
 
 class UsersFacade:
     
     def __init__(self):
         self.logic = UserLogic()
 
-    def get_random_user(self):
-        all_users = self.logic.get_all_users()
-        index = random.randint(0, len(all_users) - 1)
-        random_user = all_users[index]
+    def register_user(self, email, password, first_name, last_name):
 
-        return random_user
-    
+        if not self.logic.is_valid_email(email):
+            return "Invalid email format 😑"
+
+        # Password meets minimum length requirement
+        if len(password) < 4:
+            return "Password must be at least 4 characters long"
+
+        # Checking if email already exists in the system
+        if self.logic.check_email_existence(email):
+            return "Email already exists in the system"
+        
+        # Check if first name and last name are provided
+        if not first_name:
+            return "Must enter a First Name"
+        
+        if not last_name:
+            return "Must enter a Last Name"
+        
+        # Add user to the system
+        user = UserModel(email=email, password=password, first_name=first_name, last_name=last_name)
+        self.logic.insert_user(user)
+        return "User registered successfully 🤓👌"
+        
+    def sign_in(self, email, password):
+        user = self.logic.get_user_by_mail_id(email)
+        if user:
+            if user.password == password:
+                return "Sign-in successful"
+            else:
+                return "Incorrect password"
+        else:
+            return "User does not exist"
+
     def close(self):
         self.logic.close()
 
@@ -22,3 +49,5 @@ class UsersFacade:
         
     def __exit__(self, exc_type, exc_value, traceback):
         self.close()
+
+
