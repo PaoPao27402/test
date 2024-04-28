@@ -25,7 +25,7 @@ class Test:
             print("All Vacations:", all_vacations)
 
             # Test add_vacation (assuming parameters are provided)
-            result = facade.add_vacation(vacations_ID=58, country_ID=6, vacation_description="Amazing forest", start_vacation_date="2028-08-14", end_vacation_date="2028-09-18", price=600, vacation_pic_filename = "vac_pic_11")
+            result = facade.add_vacation(vacations_ID=98, country_ID=6, vacation_description="Amazing beaches", start_vacation_date="2028-08-16", end_vacation_date="2028-09-28", price=600, vacation_pic_filename = "vac_pic_11")
             print("Add Vacation Result:", result)
 
     def test_users_facade(self):
@@ -33,11 +33,11 @@ class Test:
 
         # Hard-coded user registration
         registration_result = self.users_facades.register_user(
-            email="davidjhonny@example.com",
-            password="p$ssword123",
-            first_name="Johnny",
-            last_name="David",
-            user_ID="UI07",  
+            email="davetonny@example.com",
+            password="p$2222word123",
+            first_name="Tonny",
+            last_name="Dave",
+            user_ID="UI08",  
             role_ID=2   
         )
         print("Registration Result:", registration_result)
