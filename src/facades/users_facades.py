@@ -1,3 +1,4 @@
+import random
 from logic.user_logic import UserLogic
 from models.user_model import UserModel
 
