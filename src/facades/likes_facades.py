@@ -1,19 +1,16 @@
-import random
-from logic.likes_logic import *
-from models.likes_model import *
+from logic.likes_logic import LikesLogic
 
 class LikesFacade:
     
     def __init__(self):
         self.logic = LikesLogic()
-
-    # def get_random_like(self):
-    #     all_likes = self.logic.get_all_users()
-    #     index = random.randint(0, len(all_users) - 1)
-    #     random_user = all_users[index]
-
-    #     return random_user
     
+    def like_vacation(self, user_ID, vacations_ID):
+        return self.logic.add_vacation_like(user_ID, vacations_ID)
+
+    def unlike_vacation(self, user_ID, vacations_ID):
+        return self.logic.delete_vacation_like(user_ID, vacations_ID)
+
     def close(self):
         self.logic.close()
 
