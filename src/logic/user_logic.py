@@ -54,6 +54,7 @@ class UserLogic:
             sql = "SELECT COUNT(*) FROM travel_agency.users_tbl WHERE email = %s AND password = %s"
             params = (email, password)
             result = self.dal.get_scalar(sql, params)
+
             if result['COUNT(*)'] > 0:
                 return "User logged in successfully 👌"
             else:
@@ -62,6 +63,7 @@ class UserLogic:
             return "Invalid email or password 🫤"
 
     def is_valid_email(self, email):
+
         if not email:
 
             return False

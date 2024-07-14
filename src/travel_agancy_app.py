@@ -25,7 +25,7 @@ class Test:
             print("All Vacations:", all_vacations)
 
             # Test add_vacation (assuming parameters are provided)
-            result = facade.add_vacation(vacations_ID=98, country_ID=6, vacation_description="Amazing beaches", start_vacation_date="2028-08-16", end_vacation_date="2028-09-28", price=600, vacation_pic_filename = "vac_pic_11")
+            result = facade.add_vacation(vacations_ID=25, country_ID=8, vacation_description="Forest and surf cool", start_vacation_date="2028-09-29", end_vacation_date="2028-10-29", price=680, vacation_pic_filename = "vac_pic_11")
             print("Add Vacation Result:", result)
 
     def test_users_facade(self):
@@ -33,19 +33,19 @@ class Test:
 
         # Hard-coded user registration
         registration_result = self.users_facades.register_user(
-            email="davetonny@example.com",
-            password="p$2222word123",
-            first_name="Tonny",
-            last_name="Dave",
-            user_ID="UI08",  
+            email="AlinEster@example.com",
+            password="p$2222word123455789",
+            first_name="Alin",
+            last_name="Ester",
+            user_ID="UI20",  
             role_ID=2   
         )
         print("Registration Result:", registration_result)
 
         # Hard-coded user sign-in
         sign_in_result = self.users_facades.register_user(
-            email="test@example.com",
-            password="password123"
+            email="jhondoe@example.com",
+            password="password123",
         )
         print("Sign-in Result:", sign_in_result)
 
@@ -54,11 +54,11 @@ class Test:
        
         with self.likes_facades as facade:
             # Test add_vacation_like (assuming parameters are provided)
-            result = facade.add_vacation_like(user_ID="UI07", vacations_ID=10)
+            result = facade.add_vacation_like(user_ID="UI10", vacations_ID=48)
             print("Add Like Result:", result)
 
             # Test delete_vacation_like (assuming parameters are provided)
-            result = facade.delete_vacation_like(user_ID="UI07", vacations_ID=2)
+            result = facade.delete_vacation_like(user_ID="UI09", vacations_ID=44)
             print("Delete Like Result:", result)
 
     def test_all(self):

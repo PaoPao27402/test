@@ -32,6 +32,36 @@ class UsersFacade:
             return "User registered successfully 🤓👌"
         else:
             return "Failed to register user 🫤"
+        
+    def login_user(self, email, password):
+    # Perform email format validation
+        if not self.logic.is_valid_email(email):
+            raise ValueError("Invalid email format 😑")
+    
+    # Perform password length validation
+        if len(password) < 4:
+            raise ValueError("Password must be at least 4 characters long")
+
+    # Retrieve user by email and password
+        user = self.logic.get_user_by_email_and_pass(email, password)
+    
+        if not user:
+            raise ValueError("Email or password are incorrect")
+        
+        else:
+            self.roleId = user["roleId"]
+            print("Email and Password match, Signed in")
+        return user
+
+    def role(self):
+        if hasattr(self, 'roleId') and self.roleId != 0:
+
+            return self.roleId
+        
+        else:
+         raise ValueError("No user is connected")
+
+
 
     def close(self):
         self.logic.close()
