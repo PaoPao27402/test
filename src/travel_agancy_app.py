@@ -25,18 +25,18 @@ class Test:
             print("All Vacations:", all_vacations)
 
             # Test add_vacation (assuming parameters are provided)
-            result = facade.add_vacation(vacations_ID=56, country_ID=8, vacation_description="Zip-line tour in the forest", start_vacation_date="2028-11-18", end_vacation_date="2028-11-28", price=889, vacation_pic_filename = "vac_pic_11")
+            result = facade.add_vacation(vacations_ID=27, country_ID=10, vacation_description="Tour in the forest and rain", start_vacation_date="2029-12-18", end_vacation_date="2029-12-28", price=891, vacation_pic_filename = "vac_pic_11")
             print("Add Vacation Result:", result)
 
     def test_users_facade(self):
         print("Testing Users Facade...")
         
         # Test user registration
-        user_ID = "UI15"
-        first_name = "Mine"
-        last_name = "Thomas"
-        email = "mine.thomas@example.com"
-        password = "1234password1234"
+        user_ID = "UI17"
+        first_name = "Paul"
+        last_name = "Henry"
+        email = "paul.henry@example.com"
+        password = "12pass"
         role_ID = "2"
 
         registration_result = self.users_facades.register_user(user_ID, first_name, last_name, email, password, role_ID)
@@ -56,7 +56,7 @@ class Test:
         print("Testing Likes Facade...")
    
         with self.likes_facades as facade:
-            result_1 = facade.add_vacation_like(user_ID="UI22", vacations_ID=15)
+            result_1 = facade.add_vacation_like(user_ID="UI04", vacations_ID=18)
             print("Add Like Result:", result_1)
 
             result_2 = facade.delete_vacation_like(user_ID="UI09", vacations_ID=48)
