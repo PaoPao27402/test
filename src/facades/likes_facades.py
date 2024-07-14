@@ -5,10 +5,10 @@ class LikesFacade:
     def __init__(self):
         self.logic = LikesLogic()
     
-    def like_vacation(self, user_ID, vacations_ID):
+    def add_vacation_like(self, user_ID, vacations_ID):
         return self.logic.add_vacation_like(user_ID, vacations_ID)
 
-    def unlike_vacation(self, user_ID, vacations_ID):
+    def delete_vacation_like(self, user_ID, vacations_ID):
         return self.logic.delete_vacation_like(user_ID, vacations_ID)
 
     def close(self):

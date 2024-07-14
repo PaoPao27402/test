@@ -25,41 +25,42 @@ class Test:
             print("All Vacations:", all_vacations)
 
             # Test add_vacation (assuming parameters are provided)
-            result = facade.add_vacation(vacations_ID=25, country_ID=8, vacation_description="Forest and surf cool", start_vacation_date="2028-09-29", end_vacation_date="2028-10-29", price=680, vacation_pic_filename = "vac_pic_11")
+            result = facade.add_vacation(vacations_ID=56, country_ID=8, vacation_description="Zip-line tour in the forest", start_vacation_date="2028-11-18", end_vacation_date="2028-11-28", price=889, vacation_pic_filename = "vac_pic_11")
             print("Add Vacation Result:", result)
 
     def test_users_facade(self):
         print("Testing Users Facade...")
+        
+        # Test user registration
+        user_ID = "UI15"
+        first_name = "Mine"
+        last_name = "Thomas"
+        email = "mine.thomas@example.com"
+        password = "1234password1234"
+        role_ID = "2"
 
-        # Hard-coded user registration
-        registration_result = self.users_facades.register_user(
-            email="AlinEster@example.com",
-            password="p$2222word123455789",
-            first_name="Alin",
-            last_name="Ester",
-            user_ID="UI20",  
-            role_ID=2   
-        )
-        print("Registration Result:", registration_result)
+        registration_result = self.users_facades.register_user(user_ID, first_name, last_name, email, password, role_ID)
+        print(f"Registration Result: {registration_result}")
 
-        # Hard-coded user sign-in
-        sign_in_result = self.users_facades.register_user(
-            email="jhondoe@example.com",
-            password="password123",
-        )
+    def test_login_user_facade(self):
+        print("Testing Users sign in...")
+
+        email = "jhondoe@example.com",
+        password ="password123"
+
+        sign_in_result = self.users_facades.login_user(email, password)
         print("Sign-in Result:", sign_in_result)
+
 
     def test_likes_facade(self):
         print("Testing Likes Facade...")
-       
+   
         with self.likes_facades as facade:
-            # Test add_vacation_like (assuming parameters are provided)
-            result = facade.add_vacation_like(user_ID="UI10", vacations_ID=48)
-            print("Add Like Result:", result)
+            result_1 = facade.add_vacation_like(user_ID="UI22", vacations_ID=15)
+            print("Add Like Result:", result_1)
 
-            # Test delete_vacation_like (assuming parameters are provided)
-            result = facade.delete_vacation_like(user_ID="UI09", vacations_ID=44)
-            print("Delete Like Result:", result)
+            result_2 = facade.delete_vacation_like(user_ID="UI09", vacations_ID=48)
+            print("Delete Like Result:", result_2)
 
     def test_all(self):
         self.test_vacation_facade()
