@@ -1,4 +1,4 @@
-from logic.vacation_logic import *
+from logic.vacation_logic import VacationLogic
 from models.vacation_model import *
 from flask import request
 
