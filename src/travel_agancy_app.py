@@ -1,74 +1,39 @@
+from flask import Flask, render_template
 from facades.vacations_facades import *
-from facades.users_facades import *
+from facades.auth_facades import *
 from facades.likes_facades import *
+from views.home_view import home_blueprint
+from views.about_view import about_blueprint
+from views.api_view import api_blueprint
+from views.vacations_view import vacation_blueprint
+from views.auth_view import auth_blueprint
+from logging import getLogger, ERROR
+from utils.app_config import AppConfig
+from utils.logger import *
+from models.status_code_model import *
 
-class Test:
-    def __init__(self):
-        self.vacations_facades = VacationFacade()
-        self.users_facades = UsersFacade()
-        self.likes_facades = LikesFacade()
+app = Flask(__name__)
 
-    def __enter__(self):
-        return self
+app.secret_key = AppConfig.session_secret_key
+app.register_blueprint(home_blueprint)
+app.register_blueprint(about_blueprint)
+app.register_blueprint(vacation_blueprint)
+app.register_blueprint(auth_blueprint)
+app.register_blueprint(api_blueprint)
 
-    def __exit__(self, exc_type, exc_value, traceback):
-        self.vacations_facades.close()
-        self.users_facades.close()
-        self.likes_facades.close()
-
-    def test_vacation_facade(self):
-        print("Testing Vacation Facade...")
-
-        with self.vacations_facades as facade:
-            # Test get_all_vacations
-            all_vacations = facade.get_all_vacations()
-            print("All Vacations:", all_vacations)
-
-            # Test add_vacation (assuming parameters are provided)
-            result = facade.add_vacation(vacations_ID=27, country_ID=10, vacation_description="Tour in the forest and rain", start_vacation_date="2029-12-18", end_vacation_date="2029-12-28", price=891, vacation_pic_filename = "vac_pic_11")
-            print("Add Vacation Result:", result)
-
-    def test_users_facade(self):
-        print("Testing Users Facade...")
-        
-        # Test user registration
-        user_ID = "UI17"
-        first_name = "Paul"
-        last_name = "Henry"
-        email = "paul.henry@example.com"
-        password = "12pass"
-        role_ID = "2"
-
-        registration_result = self.users_facades.register_user(user_ID, first_name, last_name, email, password, role_ID)
-        print(f"Registration Result: {registration_result}")
-
-    def test_login_user_facade(self):
-        print("Testing Users sign in...")
-
-        email = "jhondoe@example.com",
-        password ="password123"
-
-        sign_in_result = self.users_facades.login_user(email, password)
-        print("Sign-in Result:", sign_in_result)
+@app.errorhandler(404)
+def page_not_found(error):
+    Logger.log(str(error))
+    return render_template("404.html")
 
 
-    def test_likes_facade(self):
-        print("Testing Likes Facade...")
-   
-        with self.likes_facades as facade:
-            result_1 = facade.add_vacation_like(user_ID="UI04", vacations_ID=18)
-            print("Add Like Result:", result_1)
+@app.errorhandler(Exception)
+def catch_all(error):
+    Logger.log(str(error))
+    return render_template('500.html', error=error)
 
-            result_2 = facade.delete_vacation_like(user_ID="UI09", vacations_ID=48)
-            print("Delete Like Result:", result_2)
 
-    def test_all(self):
-        self.test_vacation_facade()
-        self.test_users_facade()
-        self.test_likes_facade()
-
-with Test() as test_instance:
-    test_instance.test_all()
+getLogger("werkzeug").setLevel(ERROR)
 
 
 

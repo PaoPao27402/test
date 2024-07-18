@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Vacation
+{% endblock title %}
+
+{% block content %}
+<body>
+<div class="add-vacation-container">
+    <div class="left-container">
+        <h1>
+            <i class="fas fa-globe"></i>
+            WanderLuxe Travels
+        </h1>
+        <div class="vacation-logo">
+            <img src="https://ih1.redbubble.net/image.4724195388.4747/st,small,507x507-pad,600x600,f8f8f8.u1.jpg" alt="vacation">
+        </div>
+    </div>
+    <div class="right-container">
+        <header>
+            <h1>Add Vacation Page</h1>
+        </header>
+        <form method="post" class="fancy_form" enctype="multipart/form-data">
+            <div class="set">
+                <div class="country-name">
+                    <label for="country">Country:</label>
+                    <select id="country" name="country" class="form-control">
+                        <option value="">Select a country</option>
+                        <option value="usa">Curaçao</option>
+                        <option value="canada">Belize</option>
+                        <option value="mexico">Bermuda</option>
+                        <option value="uk">Jamaica</option>
+                        <option value="france">British Virgin Islands</option>
+                        <option value="germany">Trinidad and Tobago</option>
+                        <option value="italy">Barbados</option>
+                        <option value="spain">Cayman Islands</option>
+                        <option value="japan">Haiti</option>
+                        <option value="australia"> Antigua and Barbuda</option>
+                    </select>
+                </div>
+                <div class="vacation-price">
+                    <label for="price">Price:</label>
+                    <input id="price" type="number" name="price" step="0.1" class="form-control">
+                </div>
+            </div>
+            <div class="set">
+                <div class="Description">
+                    <label for="description">Vacation Description:</label>
+                    <input id="description" type="text" name="stock" class="form-control">
+                </div>
+            </div>
+            <div class="set">
+                <div class="start-date">
+                    <label for="start_date">Start vacation date:</label>
+                    <input id="start_date" type="date" name="stock" class="form-control">
+                </div>
+                <div class="end-date">
+                    <label for="end_date">End vacation date:</label>
+                    <input id="end_date" type="date" name="stock" class="form-control">
+                </div>
+            </div>
+            <div class="set">
+                <div class="country-image">
+                    <label for="image">Country image:</label>
+                    <input id="image" type="file" name="image" accept="image/*" class="form-control">
+                </div>
+            </div>
+            <button class="btn btn-primary w-100">Submit</button>
+        </form>
+    </div>
+</div>
+</body>
+{% endblock content%}

@@ -7,7 +7,7 @@ class VacationModel:
         self.start_vacation_date = start_vacation_date
         self.end_vacation_date = end_vacation_date
         self.price = price
-        self.price = vacation_pic_filename
+        self.vacation_pic_filename = vacation_pic_filename
 
     def display(self):
         print(f"Vacation ID: {self.vacations_ID}\n"

@@ -1,14 +1,16 @@
 import mysql.connector
+from utils.app_config import *
 
 class DAL:
 
     def __init__(self):
         self.connection = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="P@22word2710",
-            database="travel_agency"
+            host=AppConfig.mysql_host,
+            user=AppConfig.mysql_user,
+            password=AppConfig.mysql_password,
+            database=AppConfig.mysql_database
         )
+
         print(f'DB connected: {self.connection.is_connected()}')
 
     def get_table(self, sql, params=None):
@@ -16,13 +18,6 @@ class DAL:
             cursor.execute(sql, params)
             table = cursor.fetchall()
         return table
-        
-    # def get_table_v1(self, sql, params=None):
-    #     cursor = self.connection.cursor()
-    #     cursor.execute(sql, params) 
-    #     table = cursor.fetchall()
-    #     cursor.close()
-    #     return table
     
     def get_scalar(self, sql, params=None):
         with self.connection.cursor(dictionary=True) as cursor:
@@ -31,7 +26,7 @@ class DAL:
         return scalar
         
     def insert(self, sql, params=None):
-        with self.connection.cursor() as cursor:
+        with self.connection.cursor(dictionary=True) as cursor:
             cursor.execute(sql, params)
             self.connection.commit() # Save to database now.
             last_row_id = cursor.lastrowid

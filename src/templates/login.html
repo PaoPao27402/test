@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+User Login to WanderLuxe Travels
+{% endblock title %}
+
+
+{% block content %}
+<h2>Login</h2>
+
+<form method="post" class="fancy_form">
+    <label>Email:</label>
+    <input type="email" value="{{credentials.email}}" name="email"   class="form-control" required minlength="2" maxlength="100">
+    <br>
+    <label>Password:</label>
+    <input type="password" value="{{credentials.password}}" name="password" required class="form-control" required minlength="2" maxlength="100">
+    <br>
+
+    <button onclick="saveUser()" class="btn btn-primary w-100">Login</button>
+</form>
+{% endblock content %}
