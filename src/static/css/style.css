@@ -4,7 +4,7 @@ html, body {
     text-align: center;
     align-items: center;
     height: 100%;
-    background: #D8AA96;
+    background: #fff;
     display: flex;
     flex-direction: column;
     font-family: 'Courier New', Courier, monospace;
@@ -17,20 +17,25 @@ html, body {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 8% 85% 5%;
-    box-sizing: border-box;
     align-content: center;
 }
 
 .layout > * {
-    border: 1px solid palevioletred;
+    border: 2px solid #000;
+    margin: 5px;
 }
 
 @media (min-width: 992px) {
     .navbar-expand-lg {
         flex-wrap: nowrap;
         justify-content: flex-start;
-        margin-top: 12px;
+        margin-top: 2.5px;
     }
+}
+
+.bg-body-tertiary {
+    --bs-bg-opacity: 1;
+    background-color: rgb(248 249 250 / 0%) !important;
 }
 
 header, footer {
@@ -59,18 +64,87 @@ aside {
 
 a {
     text-decoration: none;
+    color: #201E43;
 }
 
 .active {
-    color: green;
+    color: #36C2CE;
     font-weight: bold;
 }
 
 .auth {
-    margin-left: 10px;
+    font-size: 12px;
+    margin-left: 8px;
 }
 
 /* Specific header styling to ensure it doesn't move */
 header {
     width: 100%;
 }
+
+img, svg {
+    vertical-align: middle;
+    width: 28px;
+    border-radius: 200px;
+}
+
+:root {
+    --pixel-bg: #fff; /* Inner background color */
+    --pixel-border: black; /* Border color */
+    --pixel: .125rem; /* Pixel size */
+}
+
+.btn-outline-success {
+    width: 98.38px;
+    height: 20px;
+    margin-top: 6px;
+    padding: 0 10px;
+    background: var(--pixel-bg);
+    position: relative;
+    display: inline-block;
+}
+
+.btn-outline-success::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    box-shadow:
+        /* Inner Background Color */
+        0 calc(var(--pixel) * -3) 0 calc(var(--pixel) * -1) var(--pixel-bg),
+        0 calc(var(--pixel) * 3) 0 calc(var(--pixel) * -1) var(--pixel-bg),
+        0 calc(var(--pixel) * -6) 0 calc(var(--pixel) * -2) var(--pixel-bg),
+        0 calc(var(--pixel) * 6) 0 calc(var(--pixel) * -2) var(--pixel-bg),
+        0 calc(var(--pixel) * -9) 0 calc(var(--pixel) * -4) var(--pixel-bg),
+        0 calc(var(--pixel) * 9) 0 calc(var(--pixel) * -4) var(--pixel-bg),
+        0 calc(var(--pixel) * -12) 0 calc(var(--pixel) * -6) var(--pixel-bg),
+        0 calc(var(--pixel) * 12) 0 calc(var(--pixel) * -6) var(--pixel-bg),
+        /* Pixel Border */
+        calc(var(--pixel) * -1) 0 0 0 var(--pixel-border),
+        var(--pixel) 0 0 0 var(--pixel-border),
+        0 calc(var(--pixel) * -2) 0 0 var(--pixel-border),
+        0 calc(var(--pixel) * 2) 0 0 var(--pixel-border),
+        0 calc(var(--pixel) * -5) 0 calc(var(--pixel) * -1) var(--pixel-border),
+        0 calc(var(--pixel) * 5) 0 calc(var(--pixel) * -1) var(--pixel-border),
+        0 calc(var(--pixel) * -7) 0 calc(var(--pixel) * -2) var(--pixel-border),
+        0 calc(var(--pixel) * 7) 0 calc(var(--pixel) * -2) var(--pixel-border),
+        0 calc(var(--pixel) * -10) 0 calc(var(--pixel) * -4) var(--pixel-border),
+        0 calc(var(--pixel) * 10) 0 calc(var(--pixel) * -4) var(--pixel-border),
+        0 calc(var(--pixel) * -13) 0 calc(var(--pixel) * -6) var(--pixel-border),
+        0 calc(var(--pixel) * 13) 0 calc(var(--pixel) * -6) var(--pixel-border);
+}
+
+
+
+
+
+
+.btn:hover {
+    color: var(--bs-btn-hover-color);
+    background-color: #0e0e0e;
+    border-color: #0e0e0e;
+}
+
