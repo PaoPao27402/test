@@ -1,25 +1,31 @@
-html, body{
+html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
     text-align: center;
+    align-items: center;
+    height: 100%;
+    background: #D8AA96;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    font-weight: 400;
 }
 
-.layout{
+.layout {
     height: 100%;
-    box-sizing: border-box;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 10% 85% 5%;
+    box-sizing: border-box;
 }
 
-.layout, .layout > *{
+.layout > * {
     border: 1px solid palevioletred;
 }
 
 header, footer {
     grid-column: span 6;
-    height: 100%;
 }
 
 main {
@@ -35,152 +41,27 @@ aside {
     padding: 20px;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-body {
-
-    align-items: center;
-    background: #D8AA96;
-    color: blanchedalmond;
-    display: grid;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 14px;
-    font-weight: 400;
-    height: 100vh;
-    justify-items: center;
-}
-
-.add-vacation-container {
-    display: grid;
-    grid-template-areas: "left right";
-    max-width: 900px;
-}
-
-.left-container {
-    background: palevioletred;
-    overflow: hidden;
-    padding: 40px 0 0 0;
-    position: relative;
-    text-align: center;
-    width: 300px;
-  
-    & h1 {
-        display: inline-block;
-        font-size: 24px;
-      
-        & i {
-            background: blueviolet;
-            border-radius: 50%;
-            font-size: 24px;
-            margin-right: 5px;
-            padding: 10px;
-            transform: rotate(-45deg);
-        }
-    }
-  
-    .vacation-logo {
-        bottom: -5px;
-        position: absolute;
-        text-align: center;
-      
-        &:before {
-            content: "";
-            height: 100%;
-            left: 0;
-            opacity: .4;
-            position: absolute;
-            width: 100%;
-            z-index: 1;
-        }
-    }
-  
-    img {
-        filter: sepia(100%);
-        width: 70%;
-    }
-}
-
-.right-container {
-    display: grid;
-    grid-template-areas: "." ".";
-    width: 500px;
-  
-    & h1:nth-of-type(1) {
-        font-size: 28px;
-        font-weight: 600;
-    }
-  
-    & .set {
-        display: flex;
-        justify-content: space-between;
-        margin: 10px 0;
-    }
-  
-    & input {
-      border: 1px solid blue;
-      border-radius: 4px;
-      height: 38px;
-      line-height: 38px;
-      padding-left: 5px;
-    }
-  
-    & input, label {
-        color: burlywood
-    }
-  
-    & header {
-        padding: 40px;
-    }
-  
-    & label, input, .vacation-logo {
-      width: 176px;
-    }
-  
-    & .vacation-logo {
-      align-items: center;
-      display: grid;
-      grid-template-areas: ". .";
-      
-      & button {
-          border: none;
-          border-radius: 50%;
-          height: 38px;
-          margin-right: 10px;
-          outline: none;
-          width: 38px;
-      }
-      
-      & button i {
-          color: grey;
-          font-size: 16px;
-      }
-    }
-  
-    
-}
-
-
-
-
-.products-table img{
+.products-table img {
     width: 80px;
     height: 80px;
-    border: 1px, solid rgb(231, 225, 225);
+    border: 1px solid rgb(231, 225, 225);
     border-radius: 5px;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-.active{
+.active {
     color: green;
     font-weight: bold;
 }
 
-.auth{
+.auth {
     margin-left: 10px;
+}
+
+/* Specific header styling to ensure it doesn't move */
+header {
+    width: 100%;
 }
