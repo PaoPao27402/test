@@ -24,7 +24,7 @@ Vacations
         {% for v in vacations %}
 
         <tr>
-          <td><a href="{{ url_for('vacations_view.details', id = v.id) }}">{{ v.name }}</a></td>
+          <td><a href="{{ url_for('vacations_view.details', id = v.vacations_ID) }}">{{ v.name }}</a></td>
           <td>${{ v.price }}</td>
           <td>{{ v.description }}</td>
           <td><img src="{{ url_for('vacations_view.get_image', image_name =( v.image_name if v.image_name else '---'))}}" /></td>
