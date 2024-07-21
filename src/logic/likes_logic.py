@@ -38,13 +38,13 @@ class LikesLogic:
             return "Like entry does not exist"
 
         # If the like entry exists, proceed to delete it
-        sql = "DELETE FROM travel_agency.likes_table WHERE user_ID = %s AND vacations_ID = %s"
+        sql = "DELETE FROM travel_agency.likes_tbl WHERE user_ID = %s AND vacations_ID = %s"
         params = (user_ID, vacations_ID)
         result = self.dal.delete(sql, params)
         return result
 
     def like_exists(self, user_ID, vacations_ID):
-        sql = "SELECT COUNT(*) FROM travel_agency.likes_table WHERE user_ID = %s AND vacations_ID = %s"
+        sql = "SELECT COUNT(*) FROM travel_agency.likes_tbl WHERE user_ID = %s AND vacations_ID = %s"
         params = (user_ID, vacations_ID)
         result = self.dal.get_scalar(sql, params)
         return result['COUNT(*)'] > 0
