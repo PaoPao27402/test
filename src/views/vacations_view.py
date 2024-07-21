@@ -14,6 +14,7 @@ auth_facade = AuthFacade()
 
 @vacation_blueprint.route("/vacations")
 def list():
+    auth_facade.block_anonymous()
     all_vacations = facade.get_all_vacations()
     # print(all_vacations)
     return render_template("vacations.html", vacations = all_vacations, active="vacations")

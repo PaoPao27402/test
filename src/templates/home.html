@@ -7,6 +7,19 @@
 {% block content %}
     <h1>WanderLuxe Travels</h1>
     <h2>Welcome {{current_user.first_name}} 😎</h2>
+    <ul class="home_btn">
+        <li>
+            <button class="btn-primary-pixel">
+                <a href="{{ url_for('auth_view.login') }}" {% if active == 'login' %} class="active" {% endif %}>Login</a>
+            </button>
+        </li>
+        <br>
+        <li>
+            <button class="btn-primary-pixel">
+                <a href="{{ url_for('auth_view.register') }}" {% if active == 'register' %} class="active" {% endif %}>Register</a>
+            </button>
+        </li>
+    </ul>
 {% endblock content %}
 
 
