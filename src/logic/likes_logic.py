@@ -15,7 +15,7 @@ class LikesLogic:
             return "Vacation does not exist"
 
         # If both user and vacation exist, proceed to add like
-        sql = "INSERT INTO travel_agency.likes_table (user_ID, vacations_ID) VALUES (%s, %s)"
+        sql = "INSERT INTO travel_agency.likes_tbl (user_ID, vacations_ID) VALUES (%s, %s)"
         params = (user_ID, vacations_ID)
         result = self.dal.insert(sql, params)
         return result

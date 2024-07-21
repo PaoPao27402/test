@@ -1,14 +1,13 @@
 # pip install validate_email_address 
-from email_validator import validate_email 
+from email_validator import validate_email
 from models.role_model import RoleModel
 
 class UserModel:
-    def __init__(self, user_ID=None, first_name="", last_name="", email="", password="", role_ID=None):
-        self.user_ID = user_ID
+    def __init__(self, first_name, last_name, email, password, role_ID):
         self.first_name = first_name
         self.last_name = last_name
-        self.email = email 
-        self.password = password 
+        self.email = email
+        self.password = password
         self.role_ID = role_ID
 
     def validate_insert(self):

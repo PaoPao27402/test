@@ -1730,3 +1730,111 @@ The domain name example.com does not accept email.
 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
 -------------------------------------------
 -------------------------------------------
+2024-07-21 14:24:52.525195
+1364 (HY000): Field 'user_ID' doesn't have a default value
+-------------------------------------------
+-------------------------------------------
+2024-07-21 14:24:52.795232
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 14:24:54.613986
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 14:24:56.767664
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 14:24:58.182687
+redirect() got an unexpected keyword argument 'error'
+-------------------------------------------
+-------------------------------------------
+2024-07-21 14:24:58.258285
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 14:25:01.735800
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 14:25:03.105393
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 14:25:38.425950
+1364 (HY000): Field 'user_ID' doesn't have a default value
+-------------------------------------------
+-------------------------------------------
+2024-07-21 14:25:38.494621
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 16:08:02.953685
+UserModel.__init__() takes 6 positional arguments but 7 were given
+-------------------------------------------
+-------------------------------------------
+2024-07-21 16:08:03.279257
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 16:08:05.221652
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 16:09:41.865485
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 16:10:04.132044
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 16:22:08.245577
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 16:23:57.403575
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 16:24:55.654975
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 16:27:47.777663
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 16:27:51.388194
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 16:27:52.585271
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 16:27:53.547792
+redirect() got an unexpected keyword argument 'error'
+-------------------------------------------
+-------------------------------------------
+2024-07-21 16:27:53.725445
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 16:27:55.645871
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 16:27:57.157383
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 16:27:58.898639
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------
+2024-07-21 16:28:00.848561
+404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+-------------------------------------------
+-------------------------------------------

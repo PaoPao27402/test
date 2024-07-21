@@ -1,10 +1,21 @@
 html, body {
+       /* diameter of the circle */
+   --d: 1px; 
+   
+   background : radial-gradient(
+     circle at 
+        var(--d) 
+        var(--d), 
+        
+     #000 calc(var(--d) - 1px), 
+     #0000 var(--d)
+   ) 
+   0 0 / 50px 50px;
     margin: 0;
     padding: 0;
     text-align: center;
     align-items: center;
     height: 100%;
-    background: #fff;
     display: flex;
     flex-direction: column;
     font-family: 'Courier New', Courier, monospace;
@@ -18,11 +29,13 @@ html, body {
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 8% 85% 5%;
     align-content: center;
+    background-color: #fff;
 }
 
 .layout > * {
     border: 2px solid #000;
     margin: 5px;
+    box-shadow: 2px 2px;
 }
 
 @media (min-width: 992px) {
