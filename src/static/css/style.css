@@ -109,7 +109,7 @@ img, svg {
 }
 
 .btn-primary-pixel {
-    width: 98.38px;
+    width: 88px;
     height: 25px;
     margin-top: 6px;
     background: var(--pixel-bg);
@@ -165,4 +165,27 @@ img, svg {
     margin-top: 480px;
     flex-direction: row;
     justify-content: space-evenly;
+}
+
+.d-flex{
+    display: flex !important;
+    align-items: baseline;
+
+}
+
+.custom-search-input {
+    height: 40px; /* Adjust the height to make it square */
+    width: 300px; /* Adjust the width to make it longer */
+    border-radius: 0; /* Remove rounded corners */
+    padding: 10px; /* Add some padding */
+}
+
+.custom-search-input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1); /* Optional: Add a focus effect */
+    border: 1px solid rgba(81, 203, 238, 1); /* Optional: Change border color on focus */
+}
+
+.login_names{
+    margin-left: 30px;
 }
