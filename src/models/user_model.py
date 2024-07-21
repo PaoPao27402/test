@@ -17,7 +17,7 @@ class UserModel:
         if not self.last_name:return "missing last_name"
         if not self.email:return "missing email"
         if not self.password:return "missing password"
-        if not self.role_ID:return "missing role id"
+        if not self.role_ID:return "missing role_ID"
         if len(self.first_name) < 2 or len(self.first_name) > 20:return "name must be 20-100"
         if len(self.last_name) < 2 or len(self.last_name) > 20:return "price must be 0-20"
         if len(self.password) < 5 or len(self.password) > 20:return "password must be 5-20"

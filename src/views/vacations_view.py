@@ -40,7 +40,7 @@ def insert():
     try:
         auth_facade.block_anonymous()
         if(request.method=="GET"): return render_template("insert.html",  active="new")
-        facade.add_product()
+        facade.add_vacation()
         return redirect(url_for("vacations_view.list"))
     
     except AuthError as err:
