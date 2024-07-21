@@ -24,11 +24,11 @@ class VacationLogic:
                 sql = "INSERT INTO travel_agency.vacations_tbl (vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename) VALUES (%s, %s, %s, %s, %s, %s, %s)"
                 params = (vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename)
                 self.dal.insert(sql, params)
-                return "Vacation added successfully 🎊"
+                return "Vacation added successfully"
             else:
-                return "Invalid input: End date cannot be earlier than start date 📆"
+                return "Invalid input: End date cannot be earlier than start date"
         else:
-            return "Invalid input for vacation 😑"
+            return "Invalid input for vacation"
 
     def update_vacation(self, vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename):
         if self.is_valid_date(start_vacation_date) and self.is_valid_date(end_vacation_date) and 0 <= price <= 10000:
@@ -38,11 +38,11 @@ class VacationLogic:
                 sql = "UPDATE travel_agency.vacations_tbl SET country_ID = %s, vacation_description = %s, start_vacation_date = %s, end_vacation_date = %s, price = %s, vacation_pic_filename = %s WHERE vacations_ID = %s"
                 params = (country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename, vacations_ID)
                 self.dal.update(sql, params)
-                return "Vacation updated successfully 🎉"
+                return "Vacation updated successfully"
             else:
                 return "Invalid input: End date cannot be earlier than start date"
         else:
-            return "Invalid input for vacation 😑"
+            return "Invalid input for vacation"
 
     def delete_vacation(self, vacations_ID):
         # Delete likes associated with the vacation
@@ -56,7 +56,7 @@ class VacationLogic:
         # Delete the vacation
         sql_vacation = "DELETE FROM travel_agency.vacations_tbl WHERE vacations_ID = %s"
         self.dal.delete(sql_vacation, (vacations_ID,))
-        return "Vacation deleted successfully 🗑️"
+        return "Vacation deleted successfully"
     
     def get_old_image_name(self, vacations_ID):
         sql = "SELECT vacation_pic_filename FROM travel_agency.vacations_tbl WHERE vacations_ID = %s"

@@ -32,18 +32,18 @@ class AuthFacade:
         error = credentials.validate()
         if error : raise ValidationError(error, credentials)
         user = self.logic.get_user(credentials)
-        if not user : raise AuthError("Incorrect email or password 🫤", user)
+        if not user : raise AuthError("Incorrect email or password", user)
         del user["password"] #it deletes from session dictionary password key
         session["current_user"] = user
 
     def block_anonymous(self):
         user = session.get("current_user")
-        if not user :raise AuthError("You are not logged in 😑")
+        if not user :raise AuthError("You are not logged in")
 
     def block_non_admin(self):
         user = session.get("current_user")
-        if not user : raise AuthError("You are not logged in 😑")
-        if user["role_id"] != RoleModel.Admin.value: raise AuthError("You are not allowed 👀")
+        if not user : raise AuthError("You are not logged in")
+        if user["role_ID"] != RoleModel.Admin.value: raise AuthError("You are not allowed")
 
 
     def close(self):

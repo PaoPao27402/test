@@ -5,19 +5,26 @@ from models.client_error import *
 from facades.auth_facades import *
 from models.role_model import *
 from utils.logger import *
+from logic.likes_logic import *
 
 vacation_blueprint = Blueprint("vacations_view", __name__)
 
 facade = VacationFacade()
-
+logic = LikesLogic()
 auth_facade = AuthFacade()
 
 @vacation_blueprint.route("/vacations")
 def list():
     auth_facade.block_anonymous()
     all_vacations = facade.get_all_vacations()
-    # print(all_vacations)
-    return render_template("vacations.html", vacations = all_vacations, active="vacations")
+    user_liked = {}
+
+    if "current_user" in session:
+        user_ID = session["current_user"]["user_ID"]
+        user_liked = {vacation['vacations_ID']: logic.like_exists(user_ID, vacation['vacations_ID']) for vacation in all_vacations}
+
+    return render_template("vacations.html", vacations=all_vacations, user_liked=user_liked, active="vacations")
+
 
 @vacation_blueprint.route("/vacations/details/<int:id>")
 def details(id):

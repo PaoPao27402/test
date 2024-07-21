@@ -5,7 +5,7 @@ class ClientError(Exception):
 
 class ResourceNotFoundError(ClientError):
     def __init__(self, user_ID): 
-        super().__init__(f"{user_ID} not found 🔎")
+        super().__init__(f"{user_ID} not found")
         self.id = user_ID 
 
 class ValidationError(ClientError):
