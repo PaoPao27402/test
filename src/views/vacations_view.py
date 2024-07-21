@@ -17,13 +17,13 @@ auth_facade = AuthFacade()
 def list():
     auth_facade.block_anonymous()
     all_vacations = facade.get_all_vacations()
-    user_liked = {}
+    # user_liked = {}
 
     if "current_user" in session:
         user_ID = session["current_user"]["user_ID"]
-        user_liked = {vacation['vacations_ID']: logic.like_exists(user_ID, vacation['vacations_ID']) for vacation in all_vacations}
+        # user_liked = {vacation['vacations_ID']: logic.like_exists(user_ID, vacation['vacations_ID']) for vacation in all_vacations}
 
-    return render_template("vacations.html", vacations=all_vacations, user_liked=user_liked, active="vacations")
+    return render_template("vacations.html", vacations=all_vacations, active="vacations")
 
 
 @vacation_blueprint.route("/vacations/details/<int:id>")

@@ -7,7 +7,7 @@ User Login to WanderLuxe Travels
 
 {% block content %}
 <h2>Login</h2>
-
+<div class="out_box">
 <form method="post" class="fancy_form">
     <label>Email:</label>
     <input type="email" value="{{credentials.email}}" name="email"   class="form-control" required minlength="2" maxlength="100">
@@ -18,4 +18,5 @@ User Login to WanderLuxe Travels
 
     <button onclick="saveUser()" class="btn-primary-pixel">Login</button>
 </form>
+</div>
 {% endblock content %}

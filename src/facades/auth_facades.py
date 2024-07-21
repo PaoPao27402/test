@@ -16,7 +16,7 @@ class AuthFacade:
         last_name = request.form.get("last_name")
         email = request.form.get("email")
         password = request.form.get("password")
-        user = UserModel(None, first_name, last_name, email, password, RoleModel.User.value)
+        user = UserModel(None, first_name, last_name, email, password, RoleModel.user.value)
         error = user.validate_insert()
         if error: raise ValidationError("register error....", user)
         if self.logic.is_email_taken(email): raise ValidationError("email already exists", user) # user for refresh 

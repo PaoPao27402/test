@@ -16,7 +16,7 @@ class Logger:
             #write user data if exist
             user = session.get("current_user")
             if user:
-                file.write("User ID : " + str(user["id"]) + ", User Email: " + user["email"] + "\n")
+                file.write("User ID : " + str(user["user_ID"]) + ", User Email: " + user["email"] + "\n")
             file.write("-------------------------------------------" + "\n") 
 
 

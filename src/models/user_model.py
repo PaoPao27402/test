@@ -3,7 +3,8 @@ from email_validator import validate_email
 from models.role_model import RoleModel
 
 class UserModel:
-    def __init__(self, first_name, last_name, email, password, role_ID):
+    def __init__(self, user_ID, first_name, last_name, email, password, role_ID):
+        self.user_ID = user_ID
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
@@ -20,5 +21,5 @@ class UserModel:
         if len(self.last_name) < 2 or len(self.last_name) > 20: return "name must be 2-20 characters"
         if len(self.password) < 5 or len(self.password) > 255: return "password must be 5-255 characters"
         if not validate_email(self.email): return "email not valid"
-        if self.role_ID != RoleModel.Admin.value and self.role_ID != RoleModel.User.value: return "not valid role"
+        if self.role_ID != RoleModel.admin.value and self.role_ID != RoleModel.user.value: return "not valid role"
         return None

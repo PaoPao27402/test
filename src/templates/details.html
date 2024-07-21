@@ -17,7 +17,7 @@ Vacation details
 <br><br>
 
 <a href="{{ url_for('vacations_view.list')}}">Back</a>
-{% if current_user.role_id==admin %}
+{% if current_user.role_ID==1 %}
 <span>|</span>
 <a href="{{ url_for('vacations_view.edit', vacations_ID = vacation.vacations_ID)}}">Edit</a>
 <span>|</span>

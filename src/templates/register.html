@@ -7,7 +7,7 @@ register
 
 {% block content %}
 <h2>Register</h2>
-
+<div class="out_box_reg">
 <form method="post" class="fancy_form">
     <label>First Name:</label>
     <input type="text" name="first_name" value="{{user.first_name}}" class="form-control" required minlength="2" maxlength="20">
@@ -23,4 +23,5 @@ register
     <br>
     <button class="btn-primary-pixel">Submit</button>
 </form>
+</div>
 {% endblock content %}
