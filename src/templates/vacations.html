@@ -2,16 +2,17 @@
 
 {% block title %}
 Vacations  
-{% endblock %} 
+{% endblock %}
 
 {% block content %}
-    
-
     <h2>WanderLuxe Travels</h2>
     <h3>Vacations Page</h3>
-    <!-- {% if current_user.role_ID==1 %} -->
+    <!-- Ensure this line is uncommented if needed -->
+    {% if current_user.role_ID == 1 %}
     <hr />
-    <!-- <p>{{ vacations }}</p> -->
+    <!-- Ensure this line is uncommented if needed -->
+    <p>{{ vacations }}</p>
+    {% endif %}
     <table class="table table-bordered table-striped table-hover products-table">
       <thead>
         <tr>
@@ -23,15 +24,14 @@ Vacations
       </thead>
       <tbody>
         {% for v in vacations %}
-
         <tr>
-          <td><a href="{{ url_for('vacations_view.details', id = v.vacations_ID) }}">{{ v.name }}</a></td>
+          <td><a href="{{ url_for('vacations_view.details', id=v.vacations_ID) }}">{{ v.name }}</a></td>
           <td>${{ v.price }}</td>
           <td>{{ v.description }}</td>
-          <td><img src="{{ url_for('vacations_view.get_image', image_name =( v.image_name if v.image_name else '---'))}}" /></td>
+          <td><img src="{{ url_for('vacations_view.get_image', image_name=(v.image_name if v.image_name else '---')) }}" /></td>
         </tr>
         {% endfor %}
-
       </tbody>
     </table>
-{% endblock content %}
+{% endblock %}
+

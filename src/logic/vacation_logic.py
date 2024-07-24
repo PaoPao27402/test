@@ -9,8 +9,8 @@ class VacationLogic:
 
     def get_all_vacations(self):
         sql = "SELECT * FROM travel_agency.vacations_tbl ORDER BY start_vacation_date ASC"
-        result = self.dal.get_table(sql)
-        results = VacationModel.dictionaries_to_vacations(result)
+        result_table = self.dal.get_table(sql)
+        results = VacationModel.dictionaries_to_vacations(result_table)
         return results
     
     def get_one_vacation(self, vacations_ID):

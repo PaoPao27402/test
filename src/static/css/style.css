@@ -230,3 +230,12 @@ label {
     max-width: 100%;
     height: auto
 }
+
+.out_box_new_vac{
+    border: 1px solid #000;
+    width: 600px;
+    height: 400px;
+    margin-top: 20px;
+    margin-left: 60px;
+
+}

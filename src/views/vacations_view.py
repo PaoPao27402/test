@@ -17,6 +17,7 @@ auth_facade = AuthFacade()
 def list():
     auth_facade.block_anonymous()
     all_vacations = facade.get_all_vacations()
+    print(all_vacations)
     # user_liked = {}
 
     if "current_user" in session:
