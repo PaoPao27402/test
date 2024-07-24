@@ -17,3 +17,26 @@ function saveUser(){
     localStorage.setItem("email", email);
     alert("ok")
 }
+
+function likeVacation(vacations_ID, csrf_token, user_ID) {
+    fetch(`/vacations/like/${vacations_ID}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrf_token
+        },
+        body: JSON.stringify({ user_ID: user_ID })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const likeBtn = document.getElementById(`like-btn-${vacations_ID}`);
+            const likeCount = document.getElementById(`like-count-${vacations_ID}`);
+            likeCount.innerText = data.like_count;
+            likeBtn.classList.toggle('liked', data.user_liked);
+        } else {
+            alert('Error liking the vacation.');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}

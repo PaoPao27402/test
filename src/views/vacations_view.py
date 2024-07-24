@@ -17,14 +17,35 @@ auth_facade = AuthFacade()
 def list():
     auth_facade.block_anonymous()
     all_vacations = facade.get_all_vacations()
-    print(all_vacations)
-    # user_liked = {}
+    current_user = session.get("current_user")
+    
+    # Assuming like_count and user_liked are correctly populated
+    like_count = {}
+    user_liked = {}
+    
+    if current_user:
+        user_ID = current_user["user_ID"]
+        for vacation in all_vacations:
+            like_count[vacation.vacations_ID] = logic.count_likes_by_vacation(vacation.vacations_ID)
+            user_liked[vacation.vacations_ID] = logic.like_exists(user_ID, vacation.vacations_ID)
+    
+    return render_template("vacations.html", vacations=all_vacations, like_count=like_count, user_liked=user_liked, current_user=current_user, active="vacations")
 
-    if "current_user" in session:
-        user_ID = session["current_user"]["user_ID"]
-        # user_liked = {vacation['vacations_ID']: logic.like_exists(user_ID, vacation['vacations_ID']) for vacation in all_vacations}
 
-    return render_template("vacations.html", vacations=all_vacations, active="vacations")
+
+
+@vacation_blueprint.route("/vacations/like/<int:vacations_ID>", methods=["POST"])
+def like_vacation(vacations_ID):
+    user_ID = session["current_user"]["user_ID"]
+    if logic.like_exists(user_ID, vacations_ID):
+        logic.delete_vacation_like(user_ID, vacations_ID)
+        user_liked = False
+    else:
+        logic.add_vacation_like(user_ID, vacations_ID)
+        user_liked = True
+
+    like_count = logic.count_likes_by_vacation(vacations_ID)
+    return jsonify(success=True, like_count=like_count, user_liked=user_liked)
 
 
 @vacation_blueprint.route("/vacations/details/<int:id>")

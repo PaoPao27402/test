@@ -225,9 +225,9 @@ label {
 
 }
 
-.home_logo{
+.home_logo img{
     margin-top: 20px;
-    max-width: 100%;
+    width: 90%;
     height: auto
 }
 
@@ -239,3 +239,50 @@ label {
     margin-left: 60px;
 
 }
+
+
+.card {
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+    border: 1px solid #000
+}
+
+.card-img {
+    width: 100%; /* Full width of the card */
+    height: 80px; /* Fixed height for the image */
+    object-fit: cover; /* Cover the area without distortion */
+}
+
+.card-body {
+    padding: 15px; /* Padding inside the card */
+    flex-grow: 1; /* Allows the card body to take available space */
+}
+
+.card-title {
+    font-size: 1.25em; /* Title size */
+    margin-bottom: 0.5em; /* Space below the title */
+}
+
+.card-text {
+    font-size: 0.875em; /* Description size */
+    margin-bottom: 0.5em; /* Space below the description */
+}
+
+.like-button {
+    background: none; /* Remove default button background */
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Pointer cursor on hover */
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.like-button svg {
+    width: 20px; /* Icon size */
+    height: 20px;
+    vertical-align: middle; /* Vertical alignment */
+    margin-right: 5px; /* Space between icon and text */
+}
+
+

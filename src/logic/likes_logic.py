@@ -1,5 +1,4 @@
-from utils.dal import *
-from models.likes_model import *
+from utils.dal import DAL
 
 class LikesLogic:
     def __init__(self):
@@ -48,7 +47,13 @@ class LikesLogic:
         params = (user_ID, vacations_ID)
         result = self.dal.get_scalar(sql, params)
         return result['COUNT(*)'] > 0
-    
+
+    def count_likes_by_vacation(self, vacations_ID):
+        # SQL query to count likes for a vacation
+        sql = "SELECT COUNT(*) FROM travel_agency.likes_tbl WHERE vacations_ID = %s"
+        params = (vacations_ID,)
+        result = self.dal.get_scalar(sql, params)
+        return result['COUNT(*)']
 
     def close(self):
         self.dal.close()

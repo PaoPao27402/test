@@ -1,37 +1,49 @@
 {% extends "layout.html" %}
 
 {% block title %}
-Vacations  
+Vacations
 {% endblock %}
 
 {% block content %}
-    <h2>WanderLuxe Travels</h2>
-    <h3>Vacations Page</h3>
-    <!-- Ensure this line is uncommented if needed -->
-    {% if current_user.role_ID == 1 %}
-    <hr />
-    <!-- Ensure this line is uncommented if needed -->
-    <p>{{ vacations }}</p>
-    {% endif %}
-    <table class="table table-bordered table-striped table-hover products-table">
-      <thead>
-        <tr>
-          <th>Country</th>
-          <th>Price</th>
-          <th>Description</th>
-          <th>Image</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for v in vacations %}
-        <tr>
-          <td><a href="{{ url_for('vacations_view.details', id=v.vacations_ID) }}">{{ v.name }}</a></td>
-          <td>${{ v.price }}</td>
-          <td>{{ v.description }}</td>
-          <td><img src="{{ url_for('vacations_view.get_image', image_name=(v.image_name if v.image_name else '---')) }}" /></td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+<h2>WanderLuxe Travels</h2>
+<h3>Vacations Page</h3>
+<div class="card-container">
+<div class="row">
+    {% for vacation in vacations %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <img src="{{ url_for('vacations_view.get_image', image_name=(vacation.vacation_pic_filename if vacation.vacation_pic_filename else '---')) }}" class="card-img-top" alt="Vacation Image">
+            <div class="card-body">
+                <h5 class="card-title">{{ vacation.vacation_description }}</h5>
+                <p><strong>Country ID:</strong> {{ vacation.country_ID }}</p>
+                <p><strong>Price:</strong> ${{ vacation.price }}</p>
+                <p><strong>Start Date:</strong> {{ vacation.start_vacation_date }}</p>
+                <p><strong>End Date:</strong> {{ vacation.end_vacation_date }}</p>
+                <p>
+                    <button id="like-btn-{{ vacation.vacations_ID }}" class="btn btn-light" onclick="likeVacation({ vacations_ID }, '{{ current_user.user_ID }}')">
+                        
+                        <span id="like-count-{{ vacation.vacations_ID }}">{{ like_count[vacation.vacations_ID] }}</span> Likes
+                        {% if user_liked[vacation.vacations_ID] %}
+                        <svg class="bi bi-heart-fill" fill="red" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1C4.686 1 2 3.686 2 7c0 3.993 3.678 6.8 5.025 7.803.66.5 1.318.803 1.975.803.657 0 1.315-.303 1.975-.803C10.322 13.8 14 10.993 14 7c0-3.314-2.686-6-6-6zm0 12.118C5.822 11.66 4 9.737 4 7c0-1.913 1.512-3.5 3.5-3.5S11 5.087 11 7c0 2.737-1.822 4.66-3 6.118z"/>
+                        </svg>
+                        {% else %}
+                        <svg class="bi bi-heart" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                            <path fill="evenodd" d="M8 1C4.686 1 2 3.686 2 7c0 3.993 3.678 6.8 5.025 7.803.66.5 1.318.803 1.975.803.657 0 1.315-.303 1.975-.803C10.322 13.8 14 10.993 14 7c0-3.314-2.686-6-6-6zm0 12.118C5.822 11.66 4 9.737 4 7c0-1.913 1.512-3.5 3.5-3.5S11 5.087 11 7c0 2.737-1.822 4.66-3 6.118z"/>
+                        </svg>
+                        {% endif %}
+                    </button>
+                </p>
+                <a href="{{ url_for('vacations_view.details', id=vacation.vacations_ID) }}" class="btn btn-primary">Details</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+
 {% endblock %}
+
+
+
 
