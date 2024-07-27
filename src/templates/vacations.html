@@ -5,52 +5,58 @@ Vacations
 {% endblock %}
 
 {% block content %}
-<h2>WanderLuxe Travels</h2>
-<h3>Vacations Page</h3>
-
-{% if current_user and current_user.role_ID == 1 %}
-    <a href="{{ url_for('vacations_view.insert') }}" class="btn btn-primary mb-3">Add New Vacation</a>
+<h2>WanderLuxe Travels Vacations</h2>
+{% if current_user and current_user["role_ID"] == 1 %}
+<button type="button" onclick="window.location.href='{{ url_for('vacations_view.insert') }}'" class="btn btn-primary mb-3">
+    Add New Vacation
+</button>
 {% endif %}
 
 <div class="card-container">
-<div class="row">
-    {% for vacation in vacations %}
-    <div class="col-md-4 mb-4">
-        <div class="card">
-            <img src="{{ url_for('vacations_view.get_image', image_name=(vacation.vacation_pic_filename if vacation.vacation_pic_filename else '---')) }}" class="card-img-top" alt="Vacation Image">
-            <div class="card-body">
-                <h5 class="card-title">{{ vacation.country_ID }}</h5>
-                <p class="card-text">{{ vacation.vacation_description }}</p>
-                <p><strong>Price:</strong> ${{ vacation.price }}</p>
-                <p><strong>Start Date:</strong> {{ vacation.start_vacation_date }}</p>
-                <p><strong>End Date:</strong> {{ vacation.end_vacation_date }}</p>
+    <div class="row">
+        {% for vacation in vacations %}
+        <div class="col-sm-4 sm-4">
+            <div class="card" style="width: 5rem;">
+                <img src="{{ url_for('static', filename='images/' ~ (vacation.vacation_pic_filename if vacation.vacation_pic_filename else 'no-image-icon.png')) }}" class="card-img-top" alt="Vacation Image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ vacation.country_ID }}</h5>
+                    <p class="card-text">{{ vacation.vacation_description }}</p>
+                    <p><strong>Price:</strong> ${{ vacation.price }}</p>
+                    <p><strong>Start Date:</strong> {{ vacation.start_vacation_date }}</p>
+                    <p><strong>End Date:</strong> {{ vacation.end_vacation_date }}</p>
 
-                {% if current_user and current_user.role_ID != 1 %}
-                <p>
-                    <button id="like-btn-{{ vacation.vacations_ID }}" class="btn btn-light" onclick="likeVacation({ vacations_ID })">
-                        
-                        <span id="like-count-{{ vacation.vacations_ID }}">{{ like_count[vacation.vacations_ID] }}</span> Likes
-                        {% if user_liked[vacation.vacations_ID] %}
-                            <!-- Liked icon -->
-                        {% else %}
-                            <!-- Not liked icon -->
-                        {% endif %}
-                    </button>
-                </p>
+                    {% if current_user and current_user["role_ID"] == 1 %}
+                    <p>
+                        <button id="like-btn-{{ vacation.vacations_ID }}" class="btn btn-light" onclick="likeVacation('{{ vacation.vacations_ID }}', '{{ csrf_token()|escapejs }}', '{{ current_user.user_ID }}')">
+                            <span id="like-count-{{ vacation.vacations_ID }}">{{ like_count[vacation.vacations_ID] }}</span> Likes
+                            {% if user_liked[vacation.vacations_ID] %}
+                                <svg class="bi bi-heart-fill" fill="red" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 1C4.686 1 2 3.686 2 7c0 3.993 3.678 6.8 5.025 7.803.66.5 1.318.803 1.975.803.657 0 1.315-.303 1.975-.803C10.322 13.8 14 10.993 14 7c0-3.314-2.686-6-6-6zm0 12.118C5.822 11.66 4 9.737 4 7c0-1.913 1.512-3.5 3.5-3.5S11 5.087 11 7c0 2.737-1.822 4.66-3 6.118z"/>
+                                </svg>
+                            {% else %}
+                                <svg class="bi bi-heart" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 1C4.686 1 2 3.686 2 7c0 3.993 3.678 6.8 5.025 7.803.66.5 1.318.803 1.975.803.657 0 1.315-.303 1.975-.803C10.322 13.8 14 10.993 14 7c0-3.314-2.686-6-6-6zm0 12.118C5.822 11.66 4 9.737 4 7c0-1.913 1.512-3.5 3.5-3.5S11 5.087 11 7c0 2.737-1.822 4.66-3 6.118z"/>
+                                </svg>
+                            {% endif %}
+                        </button>
+                    </p>
+                    {% endif %}
+
+                    {% if current_user and current_user["role_ID"] == 1 %}
+                    <a href="{{ url_for('vacations_view.edit', id=vacation.vacations_ID) }}" class="btn btn-primary" style="width: 100px; margin-right: 20px;">Edit</a>
+                    <a href="#" onclick="return confirm('Are you sure you want to delete this vacation?');" href="{{ url_for('vacations_view.delete', id=vacation.vacations_ID) }}" class="btn btn-primary" style="width: 100px; background-color: red;">Delete</a>
                 {% endif %}
-
-                {% if current_user and current_user.role_ID == 1 %}
-                <a href="{{ url_for('vacations_view.edit', id=vacation.vacations_ID) }}" class="btn btn-primary">Edit</a>
-                <a href="#" class="btn btn-danger" onclick="confirmDelete({ vacations_ID })">Delete</a>
-            {% endif %}
+                </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 </div>
 
 {% endblock %}
+
+
+
 
 
 

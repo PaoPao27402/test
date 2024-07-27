@@ -18,20 +18,20 @@ function saveUser(){
     alert("ok")
 }
 
-function likeVacation(vacations_ID, csrf_token, user_ID) {
-    fetch(`/vacations/like/${vacations_ID}`, {
+function likeVacation(vacationID, csrfToken, userID) {
+    fetch(`/vacations/like/${vacationID}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': csrf_token
+            'X-CSRFToken': csrfToken
         },
-        body: JSON.stringify({ user_ID: user_ID })
+        body: JSON.stringify({ user_ID: userID })
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            const likeBtn = document.getElementById(`like-btn-${vacations_ID}`);
-            const likeCount = document.getElementById(`like-count-${vacations_ID}`);
+            const likeBtn = document.getElementById(`like-btn-${vacationID}`);
+            const likeCount = document.getElementById(`like-count-${vacationID}`);
             likeCount.innerText = data.like_count;
             likeBtn.classList.toggle('liked', data.user_liked);
         } else {
@@ -42,7 +42,7 @@ function likeVacation(vacations_ID, csrf_token, user_ID) {
 }
 
 function confirmDelete(vacationID) {
-    if (confirm('Are you sure you want to delete this vacation?')) {
-        window.location.href = `/vacation/delete/${vacationID}`;
+    if (confirm("Are you sure you want to delete this vacation?")) {
+        window.location.href = `/vacations/delete/${vacationID}`;
     }
 }

@@ -182,8 +182,8 @@ header {
 
 .custom-search-input:focus {
     outline: none;
-    box-shadow: 0 0 5px rgba(81, 203, 238, 1); /* Optional: Add a focus effect */
-    border: 1px solid rgba(81, 203, 238, 1); /* Optional: Change border color on focus */
+    box-shadow: 0 0 5px rgb(177, 175, 175); /* Optional: Add a focus effect */
+    border: 1px solid rgb(66, 64, 64); /* Optional: Change border color on focus */
 }
 
 .login_names{
@@ -239,7 +239,16 @@ label {
     margin-left: 60px;
 
 }
+@media (min-width: 300px) {
+    .col-sm-4 {
+        flex: 0 0 auto;
+        width: 15%;
+    }
+}
 
+.row {
+    justify-content: center;
+}
 
 .card {
     overflow: hidden; 

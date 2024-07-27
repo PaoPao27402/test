@@ -15,21 +15,16 @@ auth_facade = AuthFacade()
 
 @vacation_blueprint.route("/vacations")
 def list():
-    auth_facade.block_non_admin()
+    auth_facade.block_anonymous()
     all_vacations = facade.get_all_vacations()
-    current_user = session.get("current_user")
+    like_count = {vacation.vacations_ID: logic.count_likes_by_vacation(vacation.vacations_ID) for vacation in all_vacations}
     
-    like_count = {}
     user_liked = {}
-    
     if "current_user" in session:
-        user_ID = current_user["current_user"]["user_ID"]
-        like_count = {vacation.vacations_ID: logic.count_likes_by_vacation(vacation.vacations_ID) for vacation in all_vacations}
+        user_ID = session["current_user"]["user_ID"]
         user_liked = {vacation.vacations_ID: logic.like_exists(user_ID, vacation.vacations_ID) for vacation in all_vacations}
     
-    return render_template("vacations.html", vacations=all_vacations, current_user=current_user, like_count=like_count, user_liked=user_liked, active="vacations")
-
-
+    return render_template("vacations.html", vacations=all_vacations, like_count=like_count, user_liked=user_liked, active="vacations")
 
 
 @vacation_blueprint.route("/vacations/like/<int:vacations_ID>", methods=["POST"])
