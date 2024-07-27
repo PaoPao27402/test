@@ -43,7 +43,7 @@ class AuthFacade:
     def block_non_admin(self):
         user = session.get("current_user")
         if not user : raise AuthError("You are not logged in")
-        if user["role_ID"] != RoleModel.Admin.value: raise AuthError("You are not allowed")
+        if user["role_ID"] != RoleModel.admin.value: raise AuthError("You are not allowed")
 
 
     def close(self):

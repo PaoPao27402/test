@@ -40,3 +40,9 @@ function likeVacation(vacations_ID, csrf_token, user_ID) {
     })
     .catch(error => console.error('Error:', error));
 }
+
+function confirmDelete(vacationID) {
+    if (confirm('Are you sure you want to delete this vacation?')) {
+        window.location.href = `/vacation/delete/${vacationID}`;
+    }
+}
