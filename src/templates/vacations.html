@@ -7,27 +7,32 @@ Vacations
 {% block content %}
 <h2>WanderLuxe Travels Vacations</h2>
 {% if current_user and current_user["role_ID"] == 1 %}
-<button type="button" onclick="window.location.href='{{ url_for('vacations_view.insert') }}'" class="btn btn-primary mb-3">
-    Add New Vacation
-</button>
+<ul class="home_btn">
+    <li>
+        <button class="btn-primary-pixel">
+            <a href="{{ url_for('vacations_view.insert') }}" {% if active == 'insert' %} class="active" {% endif %}>Add New Vacation</a>
+        </button>
+    </li>
+</ul>
 {% endif %}
 
 <div class="card-container">
     <div class="row">
         {% for vacation in vacations %}
         <div class="col-sm-4 sm-4">
-            <div class="card" style="width: 5rem;">
+            <div class="card">
                 <img src="{{ url_for('static', filename='images/' ~ (vacation.vacation_pic_filename if vacation.vacation_pic_filename else 'no-image-icon.png')) }}" class="card-img-top" alt="Vacation Image">
                 <div class="card-body">
-                    <h5 class="card-title">{{ vacation.country_ID }}</h5>
+                    <p><input type="hidden" value="{{ vacation.country_ID }}" name="id" class="form-control"></p>
+                    <h5 class="card-title">{{ vacation.country_name }}</h5> <!-- Display country name -->
+                    <p>{{ vacation.start_vacation_date }}</p>
+                    <p>{{ vacation.end_vacation_date }}</p>
                     <p class="card-text">{{ vacation.vacation_description }}</p>
                     <p><strong>Price:</strong> ${{ vacation.price }}</p>
-                    <p><strong>Start Date:</strong> {{ vacation.start_vacation_date }}</p>
-                    <p><strong>End Date:</strong> {{ vacation.end_vacation_date }}</p>
 
                     {% if current_user and current_user["role_ID"] == 1 %}
                     <p>
-                        <button id="like-btn-{{ vacation.vacations_ID }}" class="btn btn-light" onclick="likeVacation('{{ vacation.vacations_ID }}', '{{ csrf_token()|escapejs }}', '{{ current_user.user_ID }}')">
+                        <button id="like-btn-{{ vacation.vacations_ID }}" class="like-button" onclick="likeVacation('{{ vacation.vacations_ID }}', '{{ csrf_token()|escapejs }}', '{{ current_user.user_ID }}')">
                             <span id="like-count-{{ vacation.vacations_ID }}">{{ like_count[vacation.vacations_ID] }}</span> Likes
                             {% if user_liked[vacation.vacations_ID] %}
                                 <svg class="bi bi-heart-fill" fill="red" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
@@ -45,7 +50,7 @@ Vacations
                     {% if current_user and current_user["role_ID"] == 1 %}
                     <a href="{{ url_for('vacations_view.edit', id=vacation.vacations_ID) }}" class="btn btn-primary" style="width: 100px; margin-right: 20px;">Edit</a>
                     <a href="#" onclick="return confirm('Are you sure you want to delete this vacation?');" href="{{ url_for('vacations_view.delete', id=vacation.vacations_ID) }}" class="btn btn-primary" style="width: 100px; background-color: red;">Delete</a>
-                {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </div>

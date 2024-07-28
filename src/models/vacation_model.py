@@ -1,6 +1,6 @@
 class VacationModel:
 
-    def __init__(self, vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename):
+    def __init__(self, vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename, country_name ):
         self.vacations_ID = vacations_ID
         self.country_ID = country_ID
         self.vacation_description = vacation_description
@@ -8,6 +8,7 @@ class VacationModel:
         self.end_vacation_date = end_vacation_date
         self.price = price
         self.vacation_pic_filename = vacation_pic_filename
+        self.country_name = country_name
 
     def display(self):
         print(f"Vacation ID: {self.vacations_ID}\n"
@@ -27,7 +28,8 @@ class VacationModel:
         end_vacation_date = dictionary["end_vacation_date"]
         price = dictionary["price"]
         vacation_pic_filename = dictionary["vacation_pic_filename"]
-        vacation = VacationModel(vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename)
+        country_name = dictionary["country_name"]
+        vacation = VacationModel(vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename, country_name)
         return vacation
 
     @staticmethod

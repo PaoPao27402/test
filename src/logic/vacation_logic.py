@@ -8,13 +8,13 @@ class VacationLogic:
         self.dal = DAL()
 
     def get_all_vacations(self):
-        sql = "SELECT * FROM travel_agency.vacations_tbl ORDER BY start_vacation_date ASC"
+        sql = "SELECT v.*, c.country_name FROM travel_agency.vacations_tbl v JOIN travel_agency.countries_tbl c ON v.country_ID = c.country_ID ORDER BY v.start_vacation_date ASC"
         result_table = self.dal.get_table(sql)
         results = VacationModel.dictionaries_to_vacations(result_table)
         return results
     
     def get_one_vacation(self, vacations_ID):
-        sql = "SELECT * FROM travel_agency.vacations_tbl WHERE vacations_ID = %s"
+        sql = "SELECT v.*, c.country_name FROM travel_agency.vacations_tbl v JOIN travel_agency.countries_tbl c ON v.country_ID = c.country_ID WHERE v.vacations_ID = %s"
         return self.dal.get_scalar(sql, (vacations_ID,))
 
     def add_vacation(self, vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename):
