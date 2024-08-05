@@ -6,14 +6,12 @@ Vacations
 
 {% block content %}
 <h2>WanderLuxe Travels Vacations</h2>
-{% if current_user and current_user["role_ID"] == 1 %}
-<ul class="home_btn">
-    <li>
+{% if user["role_ID"] == 1 %}
+<div class="home_btn">
         <button class="btn-primary-pixel">
             <a href="{{ url_for('vacations_view.insert') }}" {% if active == 'insert' %} class="active" {% endif %}>Add New Vacation</a>
         </button>
-    </li>
-</ul>
+</div>
 {% endif %}
 
 <div class="card-container">
@@ -28,26 +26,27 @@ Vacations
                     <p>{{ vacation.start_vacation_date }}</p>
                     <p>{{ vacation.end_vacation_date }}</p>
                     <p class="card-text">{{ vacation.vacation_description }}</p>
-                    <p><strong>Price:</strong> ${{ vacation.price }}</p>
+                    <p><strong>Price:</strong>{{ vacation.price }}$</p>
 
-                    {% if current_user and current_user["role_ID"] == 1 %}
+                    {% if user["role_ID"] != 1 %}
                     <p>
-                        <button id="like-btn-{{ vacation.vacations_ID }}" class="like-button" onclick="likeVacation('{{ vacation.vacations_ID }}', '{{ csrf_token()|escapejs }}', '{{ current_user.user_ID }}')">
-                            <span id="like-count-{{ vacation.vacations_ID }}">{{ like_count[vacation.vacations_ID] }}</span> Likes
+                        <a href="{{ url_for('vacations_view.like_unlike_vacation', vacations_ID=vacation.vacations_ID, action='unlike' if user_liked[vacation.vacations_ID] else 'like') }}" id="like-btn-{{ vacation.vacations_ID }}" onclick="event.preventDefault(); likeOrUnlikeVacation('{{ vacation.vacations_ID }}', '{{ 'unlike' if user_liked[vacation.vacations_ID] else 'like' }}');" class="like-button {% if user_liked[vacation.vacations_ID] %}liked{% endif %}" data-liked-url="{{ url_for('static', filename='images/heart-liked.png') }}" data-unliked-url="{{ url_for('static', filename='images/heart-unliked.png') }}">
+
+                            <span id="like-count-{{ vacation.vacations_ID }}">{{ like_count[vacation.vacations_ID] }}</span> 
+
                             {% if user_liked[vacation.vacations_ID] %}
-                                <svg class="bi bi-heart-fill" fill="red" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M8 1C4.686 1 2 3.686 2 7c0 3.993 3.678 6.8 5.025 7.803.66.5 1.318.803 1.975.803.657 0 1.315-.303 1.975-.803C10.322 13.8 14 10.993 14 7c0-3.314-2.686-6-6-6zm0 12.118C5.822 11.66 4 9.737 4 7c0-1.913 1.512-3.5 3.5-3.5S11 5.087 11 7c0 2.737-1.822 4.66-3 6.118z"/>
-                                </svg>
+                            <img src="{{ url_for('static', filename='images/heart-liked.png') }}" 
+                            alt="Liked Heart Icon" class="heart-icon-full" id="heart-icon-{{ vacation.vacations_ID }}">
                             {% else %}
-                                <svg class="bi bi-heart" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M8 1C4.686 1 2 3.686 2 7c0 3.993 3.678 6.8 5.025 7.803.66.5 1.318.803 1.975.803.657 0 1.315-.303 1.975-.803C10.322 13.8 14 10.993 14 7c0-3.314-2.686-6-6-6zm0 12.118C5.822 11.66 4 9.737 4 7c0-1.913 1.512-3.5 3.5-3.5S11 5.087 11 7c0 2.737-1.822 4.66-3 6.118z"/>
-                                </svg>
+                            <img src="{{ url_for('static', filename='images/heart-unliked.png') }}" 
+                            alt="Unliked Heart Icon" class="heart-icon-blank" id="heart-icon-{{ vacation.vacations_ID }}">
+
                             {% endif %}
-                        </button>
+                        </a>
                     </p>
                     {% endif %}
 
-                    {% if current_user and current_user["role_ID"] == 1 %}
+                    {% if user["role_ID"] == 1 %}
                     <a href="{{ url_for('vacations_view.edit', id=vacation.vacations_ID) }}" class="btn btn-primary" style="width: 100px; margin-right: 20px;">Edit</a>
                     <a href="#" onclick="return confirm('Are you sure you want to delete this vacation?');" href="{{ url_for('vacations_view.delete', id=vacation.vacations_ID) }}" class="btn btn-primary" style="width: 100px; background-color: red;">Delete</a>
                     {% endif %}

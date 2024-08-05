@@ -4,10 +4,6 @@
     --pixel: .125rem; /* Pixel size */
 }
 
-h1 {
-    margin-top: 15px;
-}
-
 html, body {
     /* diameter of the circle */
     --d: 1px;
@@ -34,7 +30,6 @@ html, body {
 .layout {
     height: 100%;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 8% 85% 5%;
     align-content: center;
     background-color: #fff;
@@ -246,7 +241,7 @@ label {
 
 @media (min-width: 300px) {
     .col-sm-4 {
-        height: 300px;
+        height: 310px;
         padding: 5px;
     }
 }
@@ -295,6 +290,14 @@ label {
     height: 20px;
     vertical-align: middle; /* Vertical alignment */
     margin-right: 5px; /* Space between icon and text */
+}
+
+.heart-icon-blank{
+    height: 16px;
+}
+
+.heart-icon-full{
+    height: 25px;
 }
 
 

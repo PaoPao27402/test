@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    {% set user = session.get("current_user") %}
     <div class="layout">
         <header>
             {% include "nav.html" %}
@@ -16,7 +17,6 @@
         <aside>
             <a href="{{ url_for('home_view.home') }}" {% if active == 'home' %} class="active" {% endif %}>Home</a>
             <a href="{{ url_for('vacations_view.list') }}" {% if active == 'vacations' %} class="active" {% endif %}>Vacations</a>
-            <a href="{{ url_for('vacations_view.insert') }}" {% if active == 'new' %} class="active" {% endif %}>Add Vacation</a>
             <a href="{{ url_for('about_view.about') }}" {% if active == 'about' %} class="active" {% endif %}>About</a>
         </aside>
         <main>

@@ -1,4 +1,5 @@
 from flask import Blueprint,render_template, send_file, redirect, url_for, request, session
+from flask import jsonify
 from facades.vacations_facades import *
 from utils.image_handler import *
 from models.client_error import *
@@ -27,18 +28,34 @@ def list():
     return render_template("vacations.html", vacations=all_vacations, like_count=like_count, user_liked=user_liked, active="vacations")
 
 
-@vacation_blueprint.route("/vacations/like/<int:vacations_ID>", methods=["POST"])
-def like_vacation(vacations_ID):
+@vacation_blueprint.route("/vacations/like/<int:vacations_ID>/<action>", methods=["GET"])
+def like_unlike_vacation(vacations_ID, action):
+    if "current_user" not in session:
+        return jsonify(success=False, message="User not logged in"), 401
+
     user_ID = session["current_user"]["user_ID"]
-    if logic.like_exists(user_ID, vacations_ID):
-        logic.delete_vacation_like(user_ID, vacations_ID)
-        user_liked = False
+    if action == 'like':
+        if not logic.like_exists(user_ID, vacations_ID):
+            logic.add_vacation_like(user_ID, vacations_ID)
+            user_liked = True
+            message = 'Vacation liked!'
+        else:
+            user_liked = True
+            message = 'You have already liked this vacation.'
+            
+    elif action == 'unlike':
+        if logic.like_exists(user_ID, vacations_ID):
+            logic.delete_vacation_like(user_ID, vacations_ID)
+            user_liked = False
+            message = 'Vacation unliked.'
+        else:
+            user_liked = False
+            message = 'You have not liked this vacation.'
     else:
-        logic.add_vacation_like(user_ID, vacations_ID)
-        user_liked = True
+        return jsonify(success=False, message="Invalid action"), 400
 
     like_count = logic.count_likes_by_vacation(vacations_ID)
-    return jsonify(success=True, like_count=like_count, user_liked=user_liked)
+    return jsonify(success=True, message=message, like_count=like_count, user_liked=user_liked)
 
 
 @vacation_blueprint.route("/vacations/details/<int:id>")
