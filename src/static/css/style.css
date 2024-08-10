@@ -104,16 +104,15 @@ header {
     border-radius: 200px;
 }
 
-.btn-primary-pixel {
+.btn-primary-pixel, .add-new-btn, .btn-edit, .btn-delete, .btn-submit, .btn-submit-save {
     width: 88px;
     height: 25px;
-    margin-top: 6px;
     background: var(--pixel-bg);
     position: relative;
     display: inline-block;
 }
 
-.btn-primary-pixel::before {
+.btn-primary-pixel::before, .add-new-btn::before, .btn-edit::before, .btn-edit::after, .btn-delete::before, .btn-delete::after, .btn-submit::before, .btn-submit::after, .btn-submit-save::before, .btn-submit-save::after {
     content: '';
     position: absolute;
     top: 0;
@@ -146,7 +145,7 @@ header {
         0 calc(var(--pixel) * 13) 0 calc(var(--pixel) * -6) var(--pixel-border);
 }
 
-.btn-primary-pixel:focus, .btn-primary-pixel:active {
+.btn-primary-pixel:focus, .btn-primary-pixel:active, .add-new-btn:focus, .add-new-btn:active {
     background-color: #d4d0d0;
     border-color: #000;
     color: #fff;
@@ -220,7 +219,6 @@ label {
 }
 
 .home_logo img {
-    margin-top: 10px;
     width: 80%;
     height: auto;
 }
@@ -231,6 +229,22 @@ label {
     height: 415px;
     margin-top: 20px;
     margin-left: 60px;
+}
+
+.out_box_edit_vac{
+    border: 1px solid #000;
+    display: flex;
+    width: 600px;
+    height: 495px;
+    margin-top: 20px;
+    margin-left: 60px;
+    flex-direction: column;
+
+}
+
+.btn-submit-save{
+    margin-top: 18px;
+
 }
 
 .card-container {
@@ -267,29 +281,12 @@ label {
     flex-grow: 1;
 }
 
-.card-title {
-    font-size: 1.25em; 
-    margin-bottom: 0.5em; 
-}
-
-.card-text {
-    font-size: 0.875em; /* Description size */
-    margin-bottom: 0.5em; /* Space below the description */
-}
-
 .like-button {
-    background: none; /* Remove default button background */
-    border: none; /* Remove default button border */
-    cursor: pointer; /* Pointer cursor on hover */
-    display: flex; /* Align items horizontally */
-    align-items: center; /* Center vertically */
-}
-
-.bi bi-heart-fill svg {
-    width: 20px; /* Icon size */
-    height: 20px;
-    vertical-align: middle; /* Vertical alignment */
-    margin-right: 5px; /* Space between icon and text */
+    background: none;
+    border: none; 
+    cursor: pointer;
+    display: flex; 
+    align-items: center; 
 }
 
 .heart-icon-blank{
@@ -300,5 +297,39 @@ label {
     height: 25px;
 }
 
+.about-text{
+    margin-top: 10px;
+}
+
+.add-new-btn{
+    margin-right: -660px;
+    margin-top: -68px;
+    width: 60px;
+    height: 20px;
+}
+
+.btn-edit, .btn-delete{
+    width: 55px;
+    height: 11px;
+    margin-top: 25px;
+    font-size: smaller;
+}
+
+.btn-submit{
+    margin-top: 20px;
+}
+
+.country-title{
+    font-size: 20px;
+}
+
+p.date{
+    margin-top: 0;
+
+}
+
+p.price{
+    font-size: medium;
+}
 
 
