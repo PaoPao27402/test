@@ -6,12 +6,13 @@ Edit Vacation Page
 
 {% block content %}
 <h2>Edit vacation: {{ vacation.country_name }}</h2>
-    <div class="out_box_edit_vac">
+<div class="box_vac">
+    <div class="edit_vac">
         <form method="post" class="fancy_form" enctype="multipart/form-data">
             <label>Country:</label>
             <input type="hidden" value="{{vacation.vacations_ID}}"  name="id" class="form-control">
-            
-            <input type="text" value="{{vacation.name}}"  name="name" class="form-control">
+
+            <input type="text" value="{{vacation.country_name}}"  name="name" class="form-control">
             <br>
             <label>Price:</label>
             <input type="number" value="{{vacation.price}}" name="price" step="0.1" class="form-control">
@@ -31,4 +32,5 @@ Edit Vacation Page
             <button class="btn-submit-save">Update</button>
         </form>
     </div>
+</div>
 {% endblock content %}

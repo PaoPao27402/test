@@ -17,12 +17,12 @@ class VacationLogic:
         sql = "SELECT v.*, c.country_name FROM travel_agency.vacations_tbl v JOIN travel_agency.countries_tbl c ON v.country_ID = c.country_ID WHERE v.vacations_ID = %s"
         return self.dal.get_scalar(sql, (vacations_ID,))
 
-    def add_vacation(self, vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename):
+    def add_vacation(self, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename):
         if self.is_valid_date(start_vacation_date) and self.is_valid_date(end_vacation_date) and 0 <= price <= 10000:
             if start_vacation_date <= end_vacation_date:
                 vacation_pic_filename = ImageHandler.save_image(vacation_pic_filename)
-                sql = "INSERT INTO travel_agency.vacations_tbl (vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-                params = (vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename)
+                sql = "INSERT INTO travel_agency.vacations_tbl (country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename) VALUES (%s, %s, %s, %s, %s, %s)"
+                params = (country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename)
                 self.dal.insert(sql, params)
                 return "Vacation added successfully"
             else:

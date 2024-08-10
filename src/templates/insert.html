@@ -13,7 +13,8 @@
             Add new Vacation
         </h1>
     </div>
-    <div class="out_box_new_vac">
+    <div class="box_add_new_vac">
+    <div class="add_new_vac">
         <form method="post" class="fancy_form" enctype="multipart/form-data">
             <div class="set">
                 <div class="country-name">
@@ -32,27 +33,32 @@
                         <option value="australia"> Antigua and Barbuda</option>
                     </select>
                 </div>
+                <br>
                 <div class="vacation-price">
                     <label for="price">Price:</label>
                     <input id="price" type="number" name="price" step="0.1" class="form-control">
                 </div>
             </div>
+            <br>
             <div class="set">
                 <div class="Description">
                     <label for="description">Vacation Description:</label>
-                    <input id="description" type="text" name="stock" class="form-control">
+                    <input id="description" type="text" name="description" class="form-control">
                 </div>
             </div>
+            <br>
             <div class="set">
                 <div class="start-date">
                     <label for="start_date">Start vacation date:</label>
-                    <input id="start_date" type="date" name="stock" class="form-control">
+                    <input id="start_date" type="date" name="start_date" class="form-control">
                 </div>
+                <br>
                 <div class="end-date">
                     <label for="end_date">End vacation date:</label>
-                    <input id="end_date" type="date" name="stock" class="form-control">
+                    <input id="end_date" type="date" name="end_date" class="form-control">
                 </div>
             </div>
+            <br>
             <div class="set">
                 <div class="country-image">
                     <label for="image">Country image:</label>
@@ -62,6 +68,7 @@
             <button class="btn-submit">Submit</button>
         </form>
     </div>
+
 </div>
 </body>
 {% endblock content%}

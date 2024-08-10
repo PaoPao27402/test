@@ -19,10 +19,10 @@
             <a href="{{ url_for('vacations_view.list') }}" {% if active == 'vacations' %} class="active" {% endif %}>Vacations</a>
             <a href="{{ url_for('about_view.about') }}" {% if active == 'about' %} class="active" {% endif %}>About</a>
         </aside>
-        <main>
-            {% block content %}
-            {% endblock content %}
-        </main>
+            <main >
+                {% block content %}
+                {% endblock content %}
+            </main>
         <footer>
             <div>All rights reserved ©</div>
         </footer>

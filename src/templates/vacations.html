@@ -28,26 +28,28 @@ Vacations
                     <p class="price"><strong>Price:</strong>{{ vacation.price }}$</p>
 
                     {% if user["role_ID"] != 1 %}
-                    <p>
-                        <a href="{{ url_for('vacations_view.like_unlike_vacation', vacations_ID=vacation.vacations_ID, action='unlike' if user_liked[vacation.vacations_ID] else 'like') }}" id="like-btn-{{ vacation.vacations_ID }}" onclick="event.preventDefault(); likeOrUnlikeVacation('{{ vacation.vacations_ID }}', '{{ 'unlike' if user_liked[vacation.vacations_ID] else 'like' }}');" class="like-button {% if user_liked[vacation.vacations_ID] %}liked{% endif %}" data-liked-url="{{ url_for('static', filename='images/heart-liked.png') }}" data-unliked-url="{{ url_for('static', filename='images/heart-unliked.png') }}">
+                        <p>
+                            <a href="{{ url_for('vacations_view.like_unlike_vacation', vacations_ID=vacation.vacations_ID, action='unlike' if user_liked[vacation.vacations_ID] else 'like') }}" id="like-btn-{{ vacation.vacations_ID }}" onclick="event.preventDefault(); likeOrUnlikeVacation('{{ vacation.vacations_ID }}', '{{ 'unlike' if user_liked[vacation.vacations_ID] else 'like' }}');" class="like-button {% if user_liked[vacation.vacations_ID] %}liked{% endif %}" data-liked-url="{{ url_for('static', filename='images/heart-liked.png') }}" data-unliked-url="{{ url_for('static', filename='images/heart-unliked.png') }}">
 
-                            <span id="like-count-{{ vacation.vacations_ID }}">{{ like_count[vacation.vacations_ID] }}</span> 
+                                <span id="like-count-{{ vacation.vacations_ID }}">{{ like_count[vacation.vacations_ID] }}</span> 
 
-                            {% if user_liked[vacation.vacations_ID] %}
-                            <img src="{{ url_for('static', filename='images/heart-liked.png') }}" 
-                            alt="Liked Heart Icon" class="heart-icon-full" id="heart-icon-{{ vacation.vacations_ID }}">
-                            {% else %}
-                            <img src="{{ url_for('static', filename='images/heart-unliked.png') }}" 
-                            alt="Unliked Heart Icon" class="heart-icon-blank" id="heart-icon-{{ vacation.vacations_ID }}">
+                                {% if user_liked[vacation.vacations_ID] %}
+                                <img src="{{ url_for('static', filename='images/heart-liked.png') }}" 
+                                alt="Liked Heart Icon" class="heart-icon-full" id="heart-icon-{{ vacation.vacations_ID }}">
+                                {% else %}
+                                <img src="{{ url_for('static', filename='images/heart-unliked.png') }}" 
+                                alt="Unliked Heart Icon" class="heart-icon-blank" id="heart-icon-{{ vacation.vacations_ID }}">
 
-                            {% endif %}
-                        </a>
-                    </p>
+                                {% endif %}
+                            </a>
+                        </p>
                     {% endif %}
 
                     {% if user["role_ID"] == 1 %}
-                    <a href="{{ url_for('vacations_view.edit', id=vacation.vacations_ID) }}" class="btn-edit">Edit</a>
-                    <a href="#" onclick="return confirm('Are you sure you want to delete this vacation?');" href="{{ url_for('vacations_view.delete', id=vacation.vacations_ID) }}" class="btn-delete">Delete</a>
+                    <div class="edit-delete-btn">
+                        <a href="{{ url_for('vacations_view.edit', id=vacation.vacations_ID) }}" class="btn-edit">Edit</a>
+                        <a href="#" onclick="return confirm('Are you sure you want to delete this vacation?');" href="{{ url_for('vacations_view.delete', id=vacation.vacations_ID) }}" class="btn-delete">Delete</a>
+                    </div>
                     {% endif %}
                 </div>
             </div>
