@@ -79,8 +79,7 @@ def get_image(image_name):
 def insert():
     try:
         auth_facade.block_anonymous()
-        if request.method == "GET":
-            return render_template("insert.html", active="new")
+        if request.method == "GET": return render_template("insert.html", vacation ={}, active="new")
 
         country_ID = request.form.get('country')
         vacation_description = request.form.get('description')
@@ -89,11 +88,7 @@ def insert():
         price = request.form.get('price')
         vacation_pic_file = request.files.get('image')
 
-        if not start_vacation_date or not end_vacation_date:
-            return render_template("insert.html", error="Start date and end date are required.", active="new")
-
         facade.add_vacation(country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_file)
-
         return redirect(url_for("vacations_view.list"))
 
     except AuthError as err:

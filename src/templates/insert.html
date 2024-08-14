@@ -15,47 +15,47 @@
     </div>
     <div class="box_add_new_vac">
     <div class="add_new_vac">
-        <form method="post" class="fancy_form" enctype="multipart/form-data">
+        <form method="POST" action="{{ url_for('vacations_view.insert') }}" class="fancy_form" enctype="multipart/form-data">
             <div class="set">
                 <div class="country-name">
                     <label for="country">Country:</label>
                     <select id="country" name="country" class="form-control">
                         <option value="">Select a country</option>
-                        <option value="usa">Curaçao</option>
-                        <option value="canada">Belize</option>
-                        <option value="mexico">Bermuda</option>
-                        <option value="uk">Jamaica</option>
-                        <option value="france">British Virgin Islands</option>
-                        <option value="germany">Trinidad and Tobago</option>
-                        <option value="italy">Barbados</option>
-                        <option value="spain">Cayman Islands</option>
-                        <option value="japan">Haiti</option>
-                        <option value="australia"> Antigua and Barbuda</option>
+                        <option value="curaçao">Curaçao</option>
+                        <option value="belize">Belize</option>
+                        <option value="bermuda">Bermuda</option>
+                        <option value="jamaica">Jamaica</option>
+                        <option value="british virgin islands">British Virgin Islands</option>
+                        <option value="trinidad and tobago">Trinidad and Tobago</option>
+                        <option value="barbados">Barbados</option>
+                        <option value="cayman islands">Cayman Islands</option>
+                        <option value="haiti">Haiti</option>
+                        <option value="antigua and barbuda">Antigua and Barbuda</option>
                     </select>
                 </div>
                 <br>
-                <div class="vacation-price">
-                    <label for="price">Price:</label>
-                    <input id="price" type="number" name="price" step="0.1" class="form-control">
+                <div class="set">
+                    <div class="Description">
+                        <label for="description">Vacation Description:</label>
+                        <input id="description" type="text" name="description" class="form-control">
+                    </div>
                 </div>
-            </div>
-            <br>
-            <div class="set">
-                <div class="Description">
-                    <label for="description">Vacation Description:</label>
-                    <input id="description" type="text" name="description" class="form-control">
-                </div>
-            </div>
-            <br>
+                <br>
             <div class="set">
                 <div class="start-date">
                     <label for="start_date">Start vacation date:</label>
-                    <input id="start_date" type="date" name="start_date" class="form-control">
+                    <input id="start_date" type="date" name="start_date" placeholder="dd-mm-yyyy" class="form-control" required>
                 </div>
                 <br>
                 <div class="end-date">
                     <label for="end_date">End vacation date:</label>
-                    <input id="end_date" type="date" name="end_date" class="form-control">
+                    <input id="end_date" type="date" name="end_date" placeholder="dd-mm-yyyy" class="form-control" required>
+                </div>
+            </div>
+            <br>
+                <div class="vacation-price">
+                    <label for="price">Price:</label>
+                    <input id="price" type="number" name="price" step="0.1" class="form-control">
                 </div>
             </div>
             <br>
@@ -70,5 +70,7 @@
     </div>
 
 </div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </body>
 {% endblock content%}

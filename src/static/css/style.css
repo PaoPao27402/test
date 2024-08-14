@@ -345,4 +345,9 @@ p.card-text{
     font-size: small;
 }
 
+.error{
+    color: red;
+    z-index: 5;
+    border: 1px solid black;
+}
 

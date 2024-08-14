@@ -12,7 +12,7 @@
     <div class="layout">
         <header>
             {% include "nav.html" %}
-            {% if error %}<span class="error">{{error}}</span>{% endif %}
+            {% if error %}<span class="error">{{ error }}</span>{% endif %}
         </header>
         <aside>
             <a href="{{ url_for('home_view.home') }}" {% if active == 'home' %} class="active" {% endif %}>Home</a>

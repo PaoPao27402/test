@@ -50,3 +50,19 @@ function likeOrUnlikeVacation(vacationID, action) {
     })
     .catch(error => console.error('Error:', error));
 }
+
+flatpickr("#start_date", {
+    dateFormat: "d/m/Y",
+    minDate: "1997-01-01",
+    onChange: function(_, dateStr) {
+        // Update the minDate for the end date input to be the selected start date
+        endDatePicker.set("minDate", dateStr);
+    }
+});
+
+// Initialize flatpickr for the end date
+var endDatePicker = flatpickr("#end_date", {
+    dateFormat: "d/m/Y",
+    minDate: "1997-01-01" // You can set this to today's date or any other date
+});
+
