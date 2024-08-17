@@ -1,9 +1,9 @@
-import datetime
+from datetime import datetime
 
 
 class VacationModel:
 
-    def __init__(self, vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename, country_name ):
+    def __init__(self, vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename):
         self.vacations_ID = vacations_ID
         self.country_ID = country_ID
         self.vacation_description = vacation_description
@@ -11,7 +11,6 @@ class VacationModel:
         self.end_vacation_date = end_vacation_date
         self.price = price
         self.vacation_pic_filename = vacation_pic_filename
-        self.country_name = country_name
 
     def display(self):
         print(f"Vacation ID: {self.vacations_ID}\n"
@@ -31,8 +30,7 @@ class VacationModel:
         end_vacation_date = dictionary["end_vacation_date"]
         price = dictionary["price"]
         vacation_pic_filename = dictionary["vacation_pic_filename"]
-        country_name = dictionary["country_name"]
-        vacation = VacationModel(vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename, country_name)
+        vacation = VacationModel(vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename)
         return vacation
 
     @staticmethod
@@ -45,22 +43,39 @@ class VacationModel:
         return vacations
     
     def validate_add_new_vacation(self):
-        if not self.country_ID: return "Please select country"
-        if not self.vacation_description: return "Please enter vacation description"
-        if not self.start_vacation_date: return "Please select start date"
-        if not self.end_vacation_date: return "Please select end date"
-        if not self.price: return "Please enter price"
-        if not self.vacation_pic_filename: return "Please select image"
-        if len(self.vacation_description) < 5 or len(self.vacation_description) > 250: return "Ensure the vacation description is between 5 and 250 characters"
+        if not self.country_ID: 
+            return "Please select country"
+        if not self.vacation_description: 
+            return "Please enter vacation description"
+        if not self.start_vacation_date: 
+            return "Please select start date"
+        if not self.end_vacation_date: 
+            return "Please select end date"
+        if not self.price: 
+            return "Please enter price"
+        if not self.vacation_pic_filename: 
+            return "Please select image"
+        if len(self.vacation_description) < 5 or len(self.vacation_description) > 250: 
+            return "Ensure the vacation description is between 5 and 250 characters"
+
         today = datetime.today().date()
-        start = datetime.strptime(self.start_vacation_date, "%d-%m-%Y").date()
-        end = datetime.strptime(self.end_vacation_date, "%d-%m-%Y").date()
-        if start < today: return "The start date cannot be a past date"
-        if end < start: return "The end date cannot be before the start date"
-        if end < today: return "The end date cannot be a past date"
-        if int(self.price) < 0 or int(self.price) > 10000: return "Please enter a vacation price between 0 and 10,000 nis"
-        return None
-    
+        try:
+            start = datetime.strptime(self.start_vacation_date, "%d/%m/%Y").date()  
+            end = datetime.strptime(self.end_vacation_date, "%d/%m/%Y").date()      
+        except ValueError:
+            return "Date format should be DD/MM/YYYY"
+
+        if start < today: 
+            return "The start date cannot be a past date"
+        if end < start: 
+            return "The end date cannot be before the start date"
+        if end < today: 
+            return "The end date cannot be a past date"
+        if int(self.price) < 0 or int(self.price) > 10000: 
+            return "Please enter a vacation price between 0 and 10,000 nis"
+        
+        return None  
+ 
     def validate_update(self):
         if not self.country_ID: return "Please select country"
         if not self.vacation_description: return "Please enter vacation description"

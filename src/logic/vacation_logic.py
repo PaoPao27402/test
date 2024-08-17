@@ -1,6 +1,5 @@
-from utils.dal import *
-from models.vacation_model import *
-from datetime import datetime
+from utils.dal import DAL
+from models.vacation_model import VacationModel
 from utils.image_handler import ImageHandler 
 
 class VacationLogic:
@@ -23,14 +22,16 @@ class VacationLogic:
         params = (country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename)
         return self.dal.insert(sql, params)
 
-
     def update_vacation(self, vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename):
         old_image_name = self.get_old_image_name(vacations_ID)
         vacation_pic_filename = ImageHandler.update_image(old_image_name, vacation_pic_filename)     
         sql = "UPDATE travel_agency.vacations_tbl SET country_ID = %s, vacation_description = %s, start_vacation_date = %s, end_vacation_date = %s, price = %s, vacation_pic_filename = %s WHERE vacations_ID = %s"
-        params = (vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename)
+        params = (country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename, vacations_ID) 
         return self.dal.update(sql, params)
-
+    
+    def get_all_countries_order_by_name(self):
+        sql = "SELECT country_ID, country_name FROM countries_tbl ORDER BY country_name"
+        return self.dal.get_table(sql)  
 
     def delete_vacation(self, vacations_ID):
         # Delete likes associated with the vacation
@@ -51,17 +52,5 @@ class VacationLogic:
         result = self.dal.get_scalar(sql, (vacations_ID,))
         return result["vacation_pic_filename"]
     
-
-    # def is_valid_date(self, date_str):
-    #     if date_str is None:
-    #         return False
-    #     try:
-    #         date = datetime.strptime(date_str, '%d-%m-%Y')
-    #         return date >= datetime.now()
-    #     except ValueError:
-    #         return False
-
-
     def close(self):
         self.dal.close()
-

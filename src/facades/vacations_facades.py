@@ -16,19 +16,13 @@ class VacationFacade:
         return self.logic.get_one_vacation(vacations_ID)
 
     def add_vacation(self, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename):
-        country_ID = request.form.get("country")
-        vacation_description = request.form.get("description")
-        start_vacation_date = request.form.get("start_date")
-        end_vacation_date = request.form.get("end_date")
-        price = request.form.get("price")
-        vacation_pic_filename = request.files.get["image"]
         new_vacation = VacationModel(None, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename)
         error = new_vacation.validate_add_new_vacation()
-        if error: raise ValidationError(error, new_vacation) 
-        self.logic.add_vacation(new_vacation)
-        
+        if error:
+            raise ValidationError(error, new_vacation)
+        self.logic.add_vacation(new_vacation.country_ID, new_vacation.vacation_description, new_vacation.start_vacation_date, new_vacation.end_vacation_date, new_vacation.price, new_vacation.vacation_pic_filename)
 
-    
+
     def update_vacation(self, vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename):
         vacations_ID = request.form.get("vacations_ID")
         country_ID = request.form.get("country_ID")
@@ -36,7 +30,7 @@ class VacationFacade:
         start_vacation_date = request.form.get("start_vacation_date")
         end_vacation_date = request.form.get("end_vacation_date")
         price = request.form.get("price")
-        vacation_pic_filename = request.files["vacation_pic_filename"]
+        vacation_pic_filename = request.files("vacation_pic_filename")
         return self.logic.update_vacation(vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename)
 
     def delete_vacation(self, vacations_ID):

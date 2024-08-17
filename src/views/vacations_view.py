@@ -7,12 +7,14 @@ from facades.auth_facades import *
 from models.role_model import *
 from utils.logger import *
 from logic.likes_logic import *
+from logic.vacation_logic import *
 
 vacation_blueprint = Blueprint("vacations_view", __name__)
 
 facade = VacationFacade()
 logic = LikesLogic()
 auth_facade = AuthFacade()
+logic_countries = VacationLogic()
 
 @vacation_blueprint.route("/vacations")
 def list():
@@ -75,12 +77,14 @@ def get_image(image_name):
     return send_file(image_path)
 
 
-@vacation_blueprint.route("/vacations/new", methods=["GET","POST"])
+@vacation_blueprint.route("/vacations/new", methods=["GET", "POST"])
 def insert():
     try:
         auth_facade.block_anonymous()
-        if request.method == "GET": return render_template("insert.html", vacation ={}, active="new")
-
+        if request.method == "GET":
+            all_countries = logic_countries.get_all_countries_order_by_name()
+            return render_template("insert.html", vacation={}, countries=all_countries, active="new")
+        
         country_ID = request.form.get('country')
         vacation_description = request.form.get('description')
         start_vacation_date = request.form.get('start_date')
@@ -94,7 +98,8 @@ def insert():
     except AuthError as err:
         return redirect(url_for("auth_view.login"), error=err.message, credentials={})
     except ValidationError as err:
-        return render_template("insert.html", error=err.message)
+        all_countries = logic_countries.get_all_countries_order_by_name() 
+        return render_template("insert.html", error=err.message, countries=all_countries)
 
 
 

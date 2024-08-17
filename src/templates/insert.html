@@ -19,54 +19,42 @@
             <div class="set">
                 <div class="country-name">
                     <label for="country">Country:</label>
-                    <select id="country" name="country" class="form-control">
+                    <select id="country" name="country" class="form-control" required>
                         <option value="">Select a country</option>
-                        <option value="curaçao">Curaçao</option>
-                        <option value="belize">Belize</option>
-                        <option value="bermuda">Bermuda</option>
-                        <option value="jamaica">Jamaica</option>
-                        <option value="british virgin islands">British Virgin Islands</option>
-                        <option value="trinidad and tobago">Trinidad and Tobago</option>
-                        <option value="barbados">Barbados</option>
-                        <option value="cayman islands">Cayman Islands</option>
-                        <option value="haiti">Haiti</option>
-                        <option value="antigua and barbuda">Antigua and Barbuda</option>
+                        {% for country in countries %}
+                            <option value="{{ country.country_ID }}">{{ country.country_name }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <br>
-                <div class="set">
-                    <div class="Description">
-                        <label for="description">Vacation Description:</label>
-                        <input id="description" type="text" name="description" class="form-control">
-                    </div>
+                <div class="Description">
+                    <label for="description">Vacation Description:</label>
+                    <input id="description" type="text" name="description" class="form-control" required>
                 </div>
                 <br>
-            <div class="set">
                 <div class="start-date">
                     <label for="start_date">Start vacation date:</label>
-                    <input id="start_date" type="date" name="start_date" placeholder="dd-mm-yyyy" class="form-control" required>
+                    <input id="start_date" type="date" name="start_date" class="form-control" required>
                 </div>
                 <br>
                 <div class="end-date">
                     <label for="end_date">End vacation date:</label>
-                    <input id="end_date" type="date" name="end_date" placeholder="dd-mm-yyyy" class="form-control" required>
+                    <input id="end_date" type="date" name="end_date" class="form-control" required>
                 </div>
-            </div>
-            <br>
+                <br>
                 <div class="vacation-price">
                     <label for="price">Price:</label>
-                    <input id="price" type="number" name="price" step="0.1" class="form-control">
+                    <input id="price" type="number" name="price" step="0.1" class="form-control" required>
                 </div>
-            </div>
-            <br>
-            <div class="set">
+                <br>
                 <div class="country-image">
                     <label for="image">Country image:</label>
-                    <input id="image" type="file" name="image" accept="image/*" class="form-control">
+                    <input id="image" type="file" name="image" accept="image/*" class="form-control" required>
                 </div>
             </div>
-            <button class="btn-submit">Submit</button>
+            <button class="btn-submit" type="submit">Submit</button>
         </form>
+        
     </div>
 
 </div>
