@@ -19,7 +19,7 @@
             <div class="set">
                 <div class="country-name">
                     <label for="country">Country:</label>
-                    <select id="country" name="country" class="form-control" required>
+                    <select id="country" name="country_ID" class="form-control" required>
                         <option value="">Select a country</option>
                         {% for country in countries %}
                             <option value="{{ country.country_ID }}" data-country-name="{{ country.country_name }}">{{ country.country_name }}</option>
@@ -31,17 +31,17 @@
                 <br>
                 <div class="Description">
                     <label for="description">Vacation Description:</label>
-                    <input id="description" type="text" name="description" class="form-control" required>
+                    <input id="description" type="text" name="vacation_description" class="form-control" required>
                 </div>
                 <br>
                 <div class="start-date">
                     <label for="start_date">Start vacation date:</label>
-                    <input id="start_date" type="date" name="start_date" class="form-control" required>
+                    <input id="start_date" type="date" name="start_vacation_date" class="form-control" required>
                 </div>
                 <br>
                 <div class="end-date">
                     <label for="end_date">End vacation date:</label>
-                    <input id="end_date" type="date" name="end_date" class="form-control" required>
+                    <input id="end_date" type="date" name="end_vacation_date" class="form-control" required>
                 </div>
                 <br>
                 <div class="vacation-price">

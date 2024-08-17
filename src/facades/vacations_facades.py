@@ -15,13 +15,12 @@ class VacationFacade:
     def get_one_vacation(self, vacations_ID):
         return self.logic.get_one_vacation(vacations_ID)
 
-    def add_vacation(self, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename):
-        new_vacation = VacationModel(None, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename)
+    def add_vacation(self, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename, country_name):
+        new_vacation = VacationModel(None, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename, country_name)
         error = new_vacation.validate_add_new_vacation()
         if error:
             raise ValidationError(error, new_vacation)
         self.logic.add_vacation(new_vacation.country_ID, new_vacation.vacation_description, new_vacation.start_vacation_date, new_vacation.end_vacation_date, new_vacation.price, new_vacation.vacation_pic_filename)
-
 
     def update_vacation(self, vacations_ID):
         existing_vacation = self.logic.get_one_vacation(vacations_ID)
@@ -33,20 +32,25 @@ class VacationFacade:
         end_vacation_date = request.form.get("end_vacation_date")
         price = request.form.get("price")
         vacation_pic_filename = request.files.get("image")
-
-        country_ID = existing_vacation.country_ID
+        
+        # Fetch country_name from your data source
+        country_name = self.get_country_name(existing_vacation.country_ID)
+        
         vacation_model = VacationModel(
             vacations_ID=vacations_ID,
-            country_ID=country_ID,
+            country_ID=existing_vacation.country_ID,
             vacation_description=vacation_description,
             start_vacation_date=start_vacation_date,
             end_vacation_date=end_vacation_date,
             price=price,
-            vacation_pic_filename=vacation_pic_filename)
+            vacation_pic_filename=vacation_pic_filename,
+            country_name=country_name
+        )
 
         if not all([vacation_description, start_vacation_date, end_vacation_date, price]):
             raise ValidationError("All fields must be filled", vacation_model)
-        return self.logic.update_vacation( vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename)
+        return self.logic.update_vacation(vacations_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename)
+
 
     def delete_vacation(self, vacations_ID):
         return self.logic.delete_vacation(vacations_ID)

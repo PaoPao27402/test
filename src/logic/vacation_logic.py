@@ -7,25 +7,16 @@ class VacationLogic:
         self.dal = DAL()
 
     def get_all_vacations(self):
-        sql = "SELECT v.*, c.country_name FROM travel_agency.vacations_tbl v JOIN travel_agency.countries_tbl c ON v.country_ID = c.country_ID ORDER BY v.start_vacation_date ASC"
-        result_table = self.dal.get_table(sql)
-        results = VacationModel.dictionaries_to_vacations(result_table)
-        return results
+        sql = "SELECT v.vacations_ID, v.country_ID, v.vacation_description, v.start_vacation_date, v.end_vacation_date, v.price, v.vacation_pic_filename, c.country_name FROM travel_agency.vacations_tbl v JOIN travel_agency.countries_tbl c ON v.country_ID = c.country_ID"
+        results = self.dal.get_table(sql)
+        return VacationModel.dictionaries_to_vacations(results)
+
 
     def get_one_vacation(self, vacations_ID):
-        sql = "SELECT v.*, c.country_name FROM travel_agency.vacations_tbl v JOIN travel_agency.countries_tbl c ON v.country_ID = c.country_ID WHERE v.vacations_ID = %s"
+        sql = "SELECT v.vacations_ID, v.country_ID, v.vacation_description, v.start_vacation_date, v.end_vacation_date, v.price, v.vacation_pic_filename, c.country_name FROM travel_agency.vacations_tbl v JOIN travel_agency.countries_tbl c ON v.country_ID = c.country_ID WHERE v.vacations_ID = %s"
         result = self.dal.get_scalar(sql, (vacations_ID,))
         if result:
-            return VacationModel(
-                vacations_ID=result["vacations_ID"],
-                country_ID=result["country_ID"],
-                vacation_description=result["vacation_description"],
-                start_vacation_date=result["start_vacation_date"],
-                end_vacation_date=result["end_vacation_date"],
-                price=result["price"],
-                vacation_pic_filename=result["vacation_pic_filename"],
-                country_name=result["country_name"]
-            )
+            return VacationModel.dictionary_to_vacation(result)
         return None
 
     def add_vacation(self, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename):
@@ -44,7 +35,12 @@ class VacationLogic:
 
     def get_all_countries_order_by_name(self):
         sql = "SELECT country_ID, country_name FROM countries_tbl ORDER BY country_name"
-        return self.dal.get_table(sql)  
+        return self.dal.get_table(sql)
+
+    def get_country_name(self, country_ID):
+        sql = "SELECT country_name FROM countries_tbl WHERE country_ID = %s"
+        result = self.dal.get_scalar(sql, (country_ID,))
+        return result['country_name'] if result else None  
 
     def delete_vacation(self, vacations_ID):
         # Delete likes associated with the vacation

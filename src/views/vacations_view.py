@@ -85,21 +85,31 @@ def insert():
             all_countries = logic_countries.get_all_countries_order_by_name()
             return render_template("insert.html", vacation={}, countries=all_countries, active="new")
         
-        country_ID = request.form.get('country')
-        vacation_description = request.form.get('description')
-        start_vacation_date = request.form.get('start_date')
-        end_vacation_date = request.form.get('end_date')
+        country_ID = request.form.get('country_ID')
+        vacation_description = request.form.get('vacation_description')
+        start_vacation_date = request.form.get('start_vacation_date')
+        end_vacation_date = request.form.get('end_vacation_date')
         price = request.form.get('price')
         vacation_pic_file = request.files.get('image')
+        country_name = logic_countries.get_country_name(country_ID)
 
-        facade.add_vacation(country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_file)
+        facade.add_vacation(
+            country_ID=country_ID,
+            vacation_description=vacation_description,
+            start_vacation_date=start_vacation_date,
+            end_vacation_date=end_vacation_date,
+            price=price,
+            vacation_pic_filename=vacation_pic_file,
+            country_name=country_name
+        )
         return redirect(url_for("vacations_view.list"))
 
     except AuthError as err:
         return redirect(url_for("auth_view.login"), error=err.message, credentials={})
     except ValidationError as err:
-        all_countries = logic_countries.get_all_countries_order_by_name() 
+        all_countries = logic_countries.get_all_countries_order_by_name()
         return render_template("insert.html", error=err.message, countries=all_countries)
+
 
 
 @vacation_blueprint.route("/vacations/edit/<int:id>", methods=["GET", "POST"])
@@ -124,8 +134,7 @@ def edit(id):
         return render_template("edit.html", vacation=one_vacation, error=err.message)
 
 
-
-@vacation_blueprint.route("/vacation/delete/<int:id>")
+@vacation_blueprint.route("/vacation/delete/<int:id>", methods=['POST'])
 def delete(id):
     try:
         auth_facade.block_non_admin()
@@ -135,7 +144,8 @@ def delete(id):
     
     except AuthError as err:
         all_vacations = facade.get_all_vacations()
-        return render_template("vacations.html", error = err.message,  vacations = all_vacations )
+        return render_template("vacations.html", error=err.message, vacations=all_vacations)
+
 
 
 

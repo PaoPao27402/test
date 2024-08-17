@@ -7,16 +7,18 @@ User Login to WanderLuxe Travels
 
 {% block content %}
 <h2>Login</h2>
-<div class="out_box">
-<form method="post" class="fancy_form">
-    <label>Email:</label>
-    <input type="email" value="{{credentials.email}}" name="email"   class="form-control" required minlength="2" maxlength="100">
-    <br>
-    <label>Password:</label>
-    <input type="password" value="{{credentials.password}}" name="password" required class="form-control" required minlength="2" maxlength="100">
-    <br>
+<div class="box_login">
+    <div class="out_box">
+    <form method="post" class="fancy_form">
+        <label>Email:</label>
+        <input type="email" value="{{credentials.email}}" name="email"   class="form-control" required minlength="2" maxlength="100">
+        <br>
+        <label>Password:</label>
+        <input type="password" value="{{credentials.password}}" name="password" required class="form-control" required minlength="2" maxlength="100">
+        <br>
 
-    <button onclick="saveUser()" class="btn-primary-pixel">Login</button>
-</form>
+        <button onclick="saveUser()" class="btn-primary-pixel">Login</button>
+    </form>
+    </div>
 </div>
 {% endblock content %}
