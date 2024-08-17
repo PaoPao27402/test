@@ -2,8 +2,7 @@ from datetime import datetime
 
 
 class VacationModel:
-
-    def __init__(self, vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename):
+    def __init__(self, vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename, country_name=None):
         self.vacations_ID = vacations_ID
         self.country_ID = country_ID
         self.vacation_description = vacation_description
@@ -11,15 +10,7 @@ class VacationModel:
         self.end_vacation_date = end_vacation_date
         self.price = price
         self.vacation_pic_filename = vacation_pic_filename
-
-    def display(self):
-        print(f"Vacation ID: {self.vacations_ID}\n"
-              f"Country ID: {self.country_ID}\n"
-              f"Vacation description: {self.vacation_description}\n"
-              f"Start date: {self.start_vacation_date}\n"
-              f"End date: {self.end_vacation_date}\n"
-              f"The Price is: {self.price}\n"
-              f"and the Vacation file is: {self.vacation_pic_filename}")
+        self.country_name = country_name
 
     @staticmethod
     def dictionary_to_vacation(dictionary):
@@ -39,9 +30,8 @@ class VacationModel:
         for item in list_of_dictionary:
             vacation = VacationModel.dictionary_to_vacation(item)
             vacations.append(vacation)
-
         return vacations
-    
+
     def validate_add_new_vacation(self):
         if not self.country_ID: 
             return "Please select country"

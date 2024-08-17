@@ -102,24 +102,27 @@ def insert():
         return render_template("insert.html", error=err.message, countries=all_countries)
 
 
-
-
 @vacation_blueprint.route("/vacations/edit/<int:id>", methods=["GET", "POST"])
-def edit(id): 
+def edit(id):
     try:
-      auth_facade.block_non_admin()
-      if(request.method=="GET"):
-        one_vacation = facade.get_one_vacation(id)
-        return render_template("edit.html", vacation = one_vacation)
-      facade.update_vacation()
-      return redirect(url_for("vacations_view.list"))
-     
+        auth_facade.block_non_admin()
+        if request.method == "GET":
+            one_vacation = facade.get_one_vacation(id)
+            return render_template("edit.html", vacation=one_vacation)
+
+        if request.method == "POST":
+            # Call the update method with the ID
+            facade.update_vacation(id)
+            return redirect(url_for("vacations_view.list"))
+
     except AuthError as err:
         all_vacations = facade.get_all_vacations()
-        return render_template("vacations.html", error = err.message, vacations = all_vacations)
-    
+        return render_template("vacations.html", error=err.message, vacations=all_vacations)
+
     except ValidationError as err:
-        return render_template("edit.html", err=err.message)
+        one_vacation = facade.get_one_vacation(id)
+        return render_template("edit.html", vacation=one_vacation, error=err.message)
+
 
 
 @vacation_blueprint.route("/vacation/delete/<int:id>")

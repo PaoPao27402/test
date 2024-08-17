@@ -25,7 +25,7 @@ Vacations
                     <h5 class="country-title">{{ vacation.country_name }}</h5> <!-- Display country name -->
                     <p class="date">{{ vacation.start_vacation_date }} → {{ vacation.end_vacation_date }}</p>
                     <p class="card-text">{{ vacation.vacation_description }}</p>
-                    <p class="price"><strong>Price:</strong>{{ vacation.price }}$</p>
+                    <p class="price"><strong>Price:</strong> {{ vacation.price }}$</p>
 
                     {% if user["role_ID"] != 1 %}
                         <p>

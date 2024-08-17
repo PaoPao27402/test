@@ -63,6 +63,10 @@ flatpickr("#start_date", {
 // Initialize flatpickr for the end date
 var endDatePicker = flatpickr("#end_date", {
     dateFormat: "d/m/Y",
-    minDate: "1997-01-01" // You can set this to today's date or any other date
+    minDate: "1997-01-01" 
 });
 
+document.getElementById('country').addEventListener('change', function() {
+    var selectedOption = this.options[this.selectedIndex];
+    document.getElementById('country-name-input').value = selectedOption.getAttribute('data-country-name');
+});

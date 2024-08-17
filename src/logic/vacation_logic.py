@@ -11,10 +11,22 @@ class VacationLogic:
         result_table = self.dal.get_table(sql)
         results = VacationModel.dictionaries_to_vacations(result_table)
         return results
-    
+
     def get_one_vacation(self, vacations_ID):
         sql = "SELECT v.*, c.country_name FROM travel_agency.vacations_tbl v JOIN travel_agency.countries_tbl c ON v.country_ID = c.country_ID WHERE v.vacations_ID = %s"
-        return self.dal.get_scalar(sql, (vacations_ID,))
+        result = self.dal.get_scalar(sql, (vacations_ID,))
+        if result:
+            return VacationModel(
+                vacations_ID=result["vacations_ID"],
+                country_ID=result["country_ID"],
+                vacation_description=result["vacation_description"],
+                start_vacation_date=result["start_vacation_date"],
+                end_vacation_date=result["end_vacation_date"],
+                price=result["price"],
+                vacation_pic_filename=result["vacation_pic_filename"],
+                country_name=result["country_name"]
+            )
+        return None
 
     def add_vacation(self, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename):
         vacation_pic_filename = ImageHandler.save_image(vacation_pic_filename)
@@ -24,11 +36,12 @@ class VacationLogic:
 
     def update_vacation(self, vacations_ID, country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename):
         old_image_name = self.get_old_image_name(vacations_ID)
-        vacation_pic_filename = ImageHandler.update_image(old_image_name, vacation_pic_filename)     
+        vacation_pic_filename = ImageHandler.update_image(old_image_name, vacation_pic_filename)
         sql = "UPDATE travel_agency.vacations_tbl SET country_ID = %s, vacation_description = %s, start_vacation_date = %s, end_vacation_date = %s, price = %s, vacation_pic_filename = %s WHERE vacations_ID = %s"
         params = (country_ID, vacation_description, start_vacation_date, end_vacation_date, price, vacation_pic_filename, vacations_ID) 
         return self.dal.update(sql, params)
-    
+
+
     def get_all_countries_order_by_name(self):
         sql = "SELECT country_ID, country_name FROM countries_tbl ORDER BY country_name"
         return self.dal.get_table(sql)  
