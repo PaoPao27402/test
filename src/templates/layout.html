@@ -18,13 +18,14 @@
             <a href="{{ url_for('home_view.home') }}" {% if active == 'home' %} class="active" {% endif %}>Home</a>
             <a href="{{ url_for('vacations_view.list') }}" {% if active == 'vacations' %} class="active" {% endif %}>Vacations</a>
             <a href="{{ url_for('about_view.about') }}" {% if active == 'about' %} class="active" {% endif %}>About</a>
+            <img class ="travel-img" src="https://media.lordicon.com/icons/wired/flat/878-airplane-window.gif" alt="travel">
         </aside>
             <main >
                 {% block content %}
                 {% endblock content %}
             </main>
         <footer>
-            <div>All rights reserved ©</div>
+            <div class="all-rights">All rights reserved ©</div>
         </footer>
     </div>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>

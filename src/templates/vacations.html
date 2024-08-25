@@ -6,7 +6,7 @@ Vacations
 
 {% block content %}
 <h2>WanderLuxe Travels Vacations</h2>
-{% if user["role_ID"] == 1 %}
+{% if user["role_ID"] == RoleModel.admin.value %}
 <div class="home_btn">
         <button class="add-new-btn">
             <a href="{{ url_for('vacations_view.insert') }}" {% if active == 'insert' %} class="active" {% endif %}>Add</a>
@@ -22,12 +22,12 @@ Vacations
                 <img src="{{ url_for('static', filename='images/' ~ (vacation.vacation_pic_filename if vacation.vacation_pic_filename else 'no-image-icon.png')) }}" class="card-img-top" alt="Vacation Image">
                 <div class="card-body">
                     <p><input type="hidden" value="{{ vacation.country_ID }}" name="id" class="form-control"></p>
-                    <h5 class="country-title">{{ vacation.country_name }}</h5> 
-                    <p class="date">{{ vacation.start_vacation_date }} → {{ vacation.end_vacation_date }}</p>
+                    <h5 class="country-title">{{ vacation.country_name }}</h5>
+                    <p class="date">📆{{ vacation.start_vacation_date }} → {{ vacation.end_vacation_date }}</p>
                     <p class="card-text">{{ vacation.vacation_description }}</p>
-                    <p class="price"><strong>Price:</strong> {{ vacation.price }}$</p>
+                    <p class="price"><strong>Price:</strong>{{ vacation.price }}$</p>
 
-                    {% if user["role_ID"] != 1 %}
+                    {% if user["role_ID"] != RoleModel.admin.value %}
                         <p>
                             <a href="{{ url_for('vacations_view.like_unlike_vacation', vacations_ID=vacation.vacations_ID, action='unlike' if user_liked[vacation.vacations_ID] else 'like') }}" id="like-btn-{{ vacation.vacations_ID }}" onclick="event.preventDefault(); likeOrUnlikeVacation('{{ vacation.vacations_ID }}', '{{ 'unlike' if user_liked[vacation.vacations_ID] else 'like' }}');" class="like-button {% if user_liked[vacation.vacations_ID] %}liked{% endif %}" data-liked-url="{{ url_for('static', filename='images/heart-liked.png') }}" data-unliked-url="{{ url_for('static', filename='images/heart-unliked.png') }}">
 
@@ -43,8 +43,13 @@ Vacations
                             </a>
                         </p>
                     {% endif %}
-
-                    {% if user["role_ID"] == 1 %}
+                    
+                    {% if user["role_ID"] == RoleModel.admin.value %}
+                    <div class="like_img_num">
+                    <span class="like_num" id="like-count-{{ vacation.vacations_ID }}">{{ like_count[vacation.vacations_ID] }}</span>
+                    <img  src="{{ url_for('static', filename='images/heart-liked.png') }}" 
+                    alt="Liked Heart Icon" class="heart-icon-full" id="heart-icon-{{ vacation.vacations_ID }}"> 
+                    </div>
                     <div class="edit-delete-btn">
                         <a href="{{ url_for('vacations_view.edit', id=vacation.vacations_ID) }}" class="btn-edit">Edit</a>
                         <form  class="btn-delete" action="{{ url_for('vacations_view.delete', id=vacation.vacations_ID) }}" method="post">

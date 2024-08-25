@@ -10,6 +10,7 @@ class DAL:
             password=AppConfig.mysql_password,
             database=AppConfig.mysql_database
         )
+        self.connection.autocommit = True
 
         print(f'DB connected: {self.connection.is_connected()}')
 

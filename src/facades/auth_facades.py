@@ -24,7 +24,6 @@ class AuthFacade:
         self.logic.add_user(user)
 
 
-
     def login(self):
         email = request.form.get("email")
         password = request.form.get("password")
